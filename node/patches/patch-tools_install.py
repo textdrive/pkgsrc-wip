@@ -1,14 +1,14 @@
 $NetBSD$
 
 Install man pages under the right directory.
---- tools/install.py.orig	2012-08-07 18:56:58.000000000 +0000
-+++ tools/install.py
-@@ -191,7 +191,7 @@ def files(action):
-           'deps/uv/include/uv-private/uv-unix.h',
-           'deps/uv/include/uv-private/uv-win.h'],
-           'include/node/uv-private/')
--  action(['doc/node.1'], 'share/man/man1/')
-+  action(['doc/node.1'], '@PKGMANDIR@/man1/')
-   action(['out/Release/node'], 'bin/node')
+--- tools/install.py.orig	2012-12-12 22:44:54.000000000 +0000
++++ tools/install.py	2012-12-27 09:07:35.002233431 +0000
+@@ -200,6 +200,8 @@
  
-   # install unconditionally, checking if the platform supports dtrace doesn't
+   if 'freebsd' in sys.platform:
+     action(['doc/node.1'], 'man/man1/')
++  elif 'sunos' in sys.platform:
++    action(['doc/node.1'], 'man/man1/')
+   else:
+     action(['doc/node.1'], 'share/man/man1/')
+ 
