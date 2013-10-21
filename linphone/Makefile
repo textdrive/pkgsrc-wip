@@ -1,6 +1,7 @@
 # $NetBSD$
 
 DISTNAME=	linphone-3.5.2
+PKGREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	http://download.savannah.gnu.org/releases/linphone/3.5.x/sources/
 
@@ -54,5 +55,5 @@ CPPFLAGS+=	-DDSP_NAME="\"${DEVOSSAUDIO}\""
 .include "../../devel/ncurses/buildlink3.mk"
 .include "../../devel/readline/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
-.include "../../wip/libexosip/buildlink3.mk"
+.include "../../net/libexosip/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

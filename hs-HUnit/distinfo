@@ -1,6 +1,5 @@
 $NetBSD$
 
-SHA1 (HUnit-1.2.4.2.tar.gz) = 4db75bfdc4dcb6061500cc3321e10a5a311df6ea
-RMD160 (HUnit-1.2.4.2.tar.gz) = a8a8dca99fc5f6fd37a35e7e71305d195e2a52e2
-Size (HUnit-1.2.4.2.tar.gz) = 23558 bytes
-SHA1 (patch-HUnit.cabal) = a695a572b9b8a370677045ada5a7542464eae0fb
+SHA1 (HUnit-1.2.5.2.tar.gz) = a9f40187acdff6416fb7a219e32c26a6361a7236
+RMD160 (HUnit-1.2.5.2.tar.gz) = f6ac9ac12c152609174ea80a3a0c694210c81594
+Size (HUnit-1.2.5.2.tar.gz) = 24889 bytes

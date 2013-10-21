@@ -2,13 +2,13 @@
 #
 
 DISTNAME=	HepMCVisual-1.1.6
-PKGNAME=	hepmcvisual-1.1.6
-CATEGORIES=	physics
+PKGNAME=	${DISTNAME:tl}
+CATEGORIES=	misc
 MASTER_SITES=	http://www.hepforge.org/archive/hepmcvisual/
 
 MAINTAINER=	jihbed.research@gmail.com
 HOMEPAGE=	http://projects.hepforge.org/hepmcvisual/
-COMMENT=	Interactive Browser for HepMC events 
+COMMENT=	Interactive Browser for HepMC events
 #LICENSE=	# TODO: (see mk/license.mk)
 
 WRKSRC=		${WRKDIR}/HepMCVisual

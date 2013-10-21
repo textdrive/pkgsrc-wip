@@ -5,8 +5,8 @@ CATEGORIES=	pkgtools
 MASTER_SITES=	# empty
 DISTFILES=	# empty
 
-MAINTAINER=	pancake@phreaker.net
-COMMENT=	pkgsrc tool to create and manage fake packages
+MAINTAINER=	pkgsrc-users@NetBSD.org
+COMMENT=	Tool for pkgsrc that creates and manages fake packages
 
 NO_CONFIGURE=	yes
 NO_BUILD=	yes

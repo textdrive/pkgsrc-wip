@@ -1,6 +1,6 @@
 $NetBSD$
 
---- setup.py.orig	2011-03-14 13:34:29.000000000 +0000
+--- setup.py.orig	2013-02-22 13:20:01.000000000 +0000
 +++ setup.py
 @@ -6,6 +6,7 @@ from setuptools import setup
  from distutils.command.sdist import sdist
@@ -10,10 +10,10 @@ $NetBSD$
  
  
  class sdist_hg(sdist):
-@@ -38,7 +39,7 @@ setup(
-     package_data = {'sumatra': ['web/media/smt.css',
-                                 'web/media/*.png',
-                                 'web/templates/*.html']},
+@@ -42,7 +43,7 @@ setup(
+                                 'web/media/extras/fontawesome/sass/*', 'web/media/extras/fontawesome/css/*.css',          
+                                 'web/templates/*.html',
+                                 'publishing/latex/sumatra.sty']},
 -    scripts = ['bin/smt', 'bin/smtweb'],
 +    scripts= ['bin/smt'+sys.version[:3], 'bin/smtweb'+sys.version[:3]],
      author = "Andrew P. Davison",

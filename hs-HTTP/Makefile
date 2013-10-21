@@ -1,11 +1,12 @@
 # $NetBSD$
 #
 
-DISTNAME=	HTTP-4000.1.1
+DISTNAME=	HTTP-4000.2.8
 CATEGORIES=	www
 
 MAINTAINER=	pho@cielonegro.org
 COMMENT=	Haskell library for client-side HTTP
+LICENSE=	modified-bsd
 
 .include "../../wip/mk/haskell.mk"
 .include "../../wip/hs-mtl/buildlink3.mk"

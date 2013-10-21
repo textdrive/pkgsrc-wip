@@ -1,8 +1,7 @@
 # $NetBSD: Makefile,v 1.10 2010/09/14 11:02:48 wiz Exp $
 #
 
-DISTNAME=	libfm-0.1.17
-PKGREVISION=	2
+DISTNAME=	libfm-1.1.0
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=pcmanfm/}
 
@@ -14,10 +13,12 @@ COMMENT=	File management library
 #DEPENDS=		gio-fam>=0:../../sysutils/gio-fam
 
 GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--enable-debug	# don't commit this
+# for fnmatch(3) FNM_CASEFOLD 
+CFLAGS.NetBSD+=		-D_NETBSD_SOURCE
+USE_LIBTOOL=		yes
 USE_TOOLS=		intltool pkg-config
 
 .include "../../x11/gtk2/buildlink3.mk"
-.include "../../wip/menu-cache/buildlink3.mk"
+.include "../../sysutils/menu-cache/buildlink3.mk"
 
 .include "../../mk/bsd.pkg.mk"

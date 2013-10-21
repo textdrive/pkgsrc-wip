@@ -2,6 +2,7 @@
 #
 
 DISTNAME=	aspell-dictionaries-1.0
+PKGREVISION=	1
 CATEGORIES=	meta-pkgs textproc
 MASTER_SITES=	# blank
 DISTFILES=	# empty
@@ -9,7 +10,7 @@ DISTFILES=	# empty
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://aspell.net/
 COMMENT=	"meta-package" for aspell spell checker dictionaries
-#LICENSE=	# TODO: (see mk/license.mk)
+LICENSE=	# blank
 
 USE_LANGUAGES=	# none
 

@@ -1,10 +1,10 @@
 $NetBSD$
 
---- src/libtracker-common/tracker-os-dependant-unix.c.orig	2010-02-04 10:25:44.000000000 +0000
-+++ src/libtracker-common/tracker-os-dependant-unix.c
-@@ -36,7 +36,7 @@
- 
- #define MEM_LIMIT 100 * 1024 * 1024
+--- src/libtracker-common/tracker-os-dependant-unix.c.orig	2013-08-01 06:34:06.000000000 +0900
++++ src/libtracker-common/tracker-os-dependant-unix.c	2013-10-16 18:26:34.000000000 +0900
+@@ -41,7 +41,7 @@
+  */
+ #define MEM_LIMIT_MIN 256 * 1024 * 1024
  
 -#if defined(__OpenBSD__) && !defined(RLIMIT_AS)
 +#if !defined(RLIMIT_AS)

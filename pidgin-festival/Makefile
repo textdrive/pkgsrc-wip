@@ -2,7 +2,7 @@
 #
 
 DISTNAME=	pidgin-festival-2.4
-PKGREVISION=	6
+PKGREVISION=	7
 CATEGORIES=	chat audio
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=pidgin-festival/}
 
@@ -18,8 +18,8 @@ GNU_CONFIGURE=		yes
 USE_LANGUAGES+=		c c++ fortran77
 USE_LIBTOOL=		yes
 USE_PKGLOCALEDIR=	yes
-USE_TOOLS+=		aclocal autoconf autoheader automake msgfmt pkg-config
-USE_TOOLS+=		xgettext
+USE_TOOLS+=		aclocal autoconf autoheader automake gm4 msgfmt
+USE_TOOLS+=		pkg-config xgettext
 
 CFLAGS+=                -DFESTIVAL_VOICES_PATH='"${PREFIX}/share/festival/lib/voices"'
 

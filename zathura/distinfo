@@ -1,6 +1,6 @@
 $NetBSD$
 
-SHA1 (zathura-0.0.8.4.tar.gz) = 5c0f02181baa555ff2e7ed0f4c68ca2a2a2a5893
-RMD160 (zathura-0.0.8.4.tar.gz) = 1d4161a0cc5668a18dee515204d6152ce87259f7
-Size (zathura-0.0.8.4.tar.gz) = 37542 bytes
-SHA1 (patch-config.mk.c) = 38ef56b1ae9e783941faa485a4a5d6dab648d102
+SHA1 (zathura-0.2.3.tar.gz) = cc3cb49f3bc9e7f787773ac7c3db18ca2ff6dce3
+RMD160 (zathura-0.2.3.tar.gz) = 4ff510bf03a35d297ec69680086f055b96948a57
+Size (zathura-0.2.3.tar.gz) = 121465 bytes
+SHA1 (patch-aa) = 522f544ad2ebfbc2f0df5af0c5b05c61faef2349

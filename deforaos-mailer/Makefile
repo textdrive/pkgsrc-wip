@@ -1,9 +1,10 @@
 # $NetBSD$
+#
 
-DISTNAME=	Mailer-0.1.5
-PKGNAME=	deforaos-mailer-0.1.5
+DISTNAME=	Mailer-0.1.6
+PKGNAME=	deforaos-mailer-0.1.6
 CATEGORIES=	mail
-MASTER_SITES=	http://www.defora.org/os/download/download/3704/
+MASTER_SITES=	http://www.defora.org/os/download/download/4029/
 
 MAINTAINER=	khorben@defora.org
 HOMEPAGE=	http://www.defora.org/
@@ -29,6 +30,7 @@ post-install:
 
 .include "options.mk"
 
+.include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../security/openssl/buildlink3.mk"
 .include "../../wip/deforaos-libdesktop/buildlink3.mk"
 .include "../../textproc/gtk-doc/buildlink3.mk"

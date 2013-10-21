@@ -1,5 +1,5 @@
 $NetBSD$
 
-SHA1 (tor-0.2.3.17-beta.tar.gz) = 2564cc0f2f487c35b61a4e5c5c4cb32804cb00f4
-RMD160 (tor-0.2.3.17-beta.tar.gz) = 2006a4eab12e5e25bae3c793b560f6a676311341
-Size (tor-0.2.3.17-beta.tar.gz) = 3098483 bytes
+SHA1 (tor-0.2.4.17-rc.tar.gz) = ed19e93188d620e1a5bca0e6c243ef5941490c05
+RMD160 (tor-0.2.4.17-rc.tar.gz) = 4dbcc8e2d4e3b9ebe32f41ce8083e8521ad5a349
+Size (tor-0.2.4.17-rc.tar.gz) = 2825527 bytes

@@ -3,8 +3,7 @@
 
 .include	"version.mk"
 DISTNAME=	emacs-${_EMACS_VERSION_MAJOR}.${_EMACS_VERSION_MINOR}.${_EMACS_VERSION_MICRO}
-#PKGNAME=	emacs-24.0.50
-PKGREVISION=	${_GIT_PKGVERSION:S/.//g}
+PKGNAME=	emacs24-${_EMACS_VERSION_MAJOR}.${_EMACS_VERSION_MINOR}.${_EMACS_VERSION_MICRO}
 CATEGORIES=	editors
 MASTER_SITES=	#
 
@@ -15,13 +14,14 @@ LICENSE=	gnu-gpl-v3
 
 USE_TOOLS+=	gmake makeinfo gzip autoconf automake
 # for example, Mac OS X 10.6.1 has 2.61 which fails
-AUTOCONF_REQUIRED=	2.65
+AUTOCONF_REQD=	2.65
 
 CONFLICTS+=	emacs-nox11-[0-9]*
 
 BUILD_TARGET=	bootstrap
 
 GIT_REPOSITORIES=	master
+GIT_MODULE.master=	emacs
 GIT_REPO.master=	git://repo.or.cz/emacs.git
 _GIT_FLAGS?=		--depth 1
 
@@ -35,11 +35,14 @@ WRKSRC=		${WRKDIR}/emacs
 CONFIGURE_ARGS+=	--srcdir=${WRKSRC:Q}
 CONFIGURE_ARGS+=	--localstatedir=${VARBASE:Q}
 CONFIGURE_ENV+=		GAMEOWN=${GAMEOWN:Q}
+# For wip special, following gives symbol names when back trace is shown.
+CFLAGS+=		-g
 
 BUILD_DEFS+=		VARBASE
 BUILD_DEFS+=		GAMEDATAMODE
 
 PLIST_SRC+=		PLIST
+PLIST_SUBST+=           DISTNAME=${DISTNAME}
 
 MAKE_DIRS_PERMS+=	${VARBASE}/games/emacs ${GAMEOWN:Q} ${GAMEGRP} ${GAMEDIRMODE:Q}
 CONF_FILES_PERMS+=	/dev/null ${VARBASE}/games/emacs/snake-scores ${GAMEOWN:Q} ${GAMEGRP:Q} ${GAMEDATAMODE:Q}
@@ -52,27 +55,27 @@ CONF_FILES_PERMS+=	/dev/null ${VARBASE}/games/emacs/tetris-scores ${GAMEOWN:Q} $
 CHECK_WRKREF_SKIP+=	bin/emacs
 CHECK_WRKREF_SKIP+=	bin/emacs-${PKGVERSION_NOREV}
 
-FILESDIR=	${.CURDIR}/../../editors/emacs/files
+FILESDIR=	${.CURDIR}/files
 
 # Check some related libraries for inclusion.
 MESALIB_VERSION!=	\
 	(${PKG_INFO} -e MesaLib || ${ECHO} "0") | \
-	${SED} -e 's/MesaLib-//' 
+	${SED} -e 's/MesaLib-//'
 
 GL_VERSION!=	\
 	(${PKG_INFO} -e gl || ${ECHO} "0") | \
-	${SED} -e 's/gl-//' 
+	${SED} -e 's/gl-//'
 
 post-extract:
 	# set auto-load for send-pr library
 	cp ${FILESDIR}/site-init.el ${WRKSRC}/lisp
-# Comment out for debug.
+# Uncomment for debug.
 #.if ${MESALIB_VERSION:R} >= 7.8
 #	@echo '  ** MesaLib version 7.8.2 or later installed.'
 #.endif
 
 pre-configure:
-	(cd ${WRKSRC}; ./autogen.sh)
+	(cd ${WRKSRC}; ${PKGSRC_SETENV} ${CONFIGURE_ENV} ${CONFIG_SHELL} ./autogen.sh)
 
 .include "../../wip/mk/git-package.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"

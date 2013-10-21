@@ -1,2 +1,1 @@
-* The autoconf build system is broken; hardcoded paths are used
-  to work around the issue for now.
+When updating this package, please consider http://secunia.com/advisories/53353/

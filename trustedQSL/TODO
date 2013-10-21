@@ -1,2 +1,2 @@
-- Finding wxWindows at configure is not clean yet.
-  See the combination of patch-configure and SUBST in Makefile.
+- SunOS 5.11/x86_64 is saying,
+  Could NOT find BDB (missing: BDB_INCLUDE_DIR)

@@ -1,6 +1,5 @@
 $NetBSD$
 
-SHA1 (tagsoup-0.8.tar.gz) = 0ec3382ffb54c8e2812eed6e01f6e775739baf4d
-RMD160 (tagsoup-0.8.tar.gz) = 9c2bad3d731f84e7e543ec32b54eb5f1bb8f6127
-Size (tagsoup-0.8.tar.gz) = 28208 bytes
-SHA1 (patch-aa) = 06b991b71006b66412d05eb7d1e6a4ccfd4c56e9
+SHA1 (tagsoup-0.13.tar.gz) = 0c127690f80828cf425cc5e04f21f9ae0e46b597
+RMD160 (tagsoup-0.13.tar.gz) = b94f75cc39784199e51a8d62816308a7c8944a5a
+Size (tagsoup-0.13.tar.gz) = 42110 bytes

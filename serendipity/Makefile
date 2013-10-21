@@ -1,7 +1,9 @@
-# $NetBSD: Makefile,v 1.6 2009/11/12 22:05:55 adrianp Exp $
+# $Id$
+# $NetBSD$
 
 DISTNAME=		serendipity-${VERSION}
-VERSION=		1.5.3
+# Please contact the maintainer when changing the line below.
+VERSION=		1.7.3
 CATEGORIES=		www
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=php-blog/}
 
@@ -9,7 +11,15 @@ MAINTAINER=		tonnerre@NetBSD.org
 HOMEPAGE=		http://s9y.org/
 COMMENT=		Blogging tool written in php
 
-USE_TOOLS+=		pax
+USE_TOOLS+=		pax find rm
+
+REPLACE_INTERPRETER+=	bash perl
+REPLACE.bash.old=	/bin/bash
+REPLACE.bash.new=	/bin/sh
+REPLACE_FILES.bash=	lang/UTF-8/recode.sh lang/addlang.sh lang/append.sh
+REPLACE.perl.old=	/usr/bin/perl
+REPLACE.perl.new=	${PREFIX}/bin/perl
+REPLACE_FILES.perl=	htmlarea/plugins/SpellChecker/spell-check-logic.cgi
 
 .include "../../mk/bsd.prefs.mk"
 .include "../../lang/php/phpversion.mk"
@@ -35,11 +45,14 @@ DOC_FILES=		CHANGED_FILES INSTALL INSTALL_EMBEDED INSTALL_SHARED
 DOC_FILES+=		LICENSE NEWS NEWS_OLD README RELEASE UPGRADE
 
 do-install:
+	${INSTALL_DATA} ${WRKSRC}/README.markdown ${DESTDIR}${DOCDIR}
+	${RM} ${WRKSRC}/README.markdown
 .for f in ${DOC_FILES}
 	${INSTALL_DATA} ${WRKSRC}/docs/${f} ${DESTDIR}${DOCDIR}
 	${RM} ${WRKSRC}/docs/${f}
 .endfor
 
+	cd ${WRKSRC} && find . -name '.gitignore' -print | xargs rm -f
 	cd ${WRKSRC} && pax -rw -pmp . ${DESTDIR}${S9YHOME}
 
 .include "../../mk/bsd.pkg.mk"

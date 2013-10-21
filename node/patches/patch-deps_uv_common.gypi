@@ -1,14 +1,15 @@
 $NetBSD$
 
 Add support for NetBSD.
---- deps/uv/common.gypi.orig	2012-08-15 22:52:57.000000000 +0000
+
+--- deps/uv/common.gypi.orig	2013-04-11 16:39:16.000000000 +0000
 +++ deps/uv/common.gypi
-@@ -118,7 +118,7 @@
-           '_CRT_NONSTDC_NO_DEPRECATE',
-         ],
+@@ -129,7 +129,7 @@
+           }]
+         ]
        }],
 -      [ 'OS=="linux" or OS=="freebsd" or OS=="openbsd" or OS=="solaris"', {
-+      [ 'OS=="linux" or OS=="freebsd" or OS=="openbsd" or OS=="solaris" or OS=="netbsd"', {
++      [ 'OS=="linux" or OS=="freebsd" or OS=="openbsd" or OS=="solaris" OR OS=="netbsd"', {
          'cflags': [ '-Wall' ],
          'cflags_cc': [ '-fno-rtti', '-fno-exceptions' ],
-         'conditions': [
+         'target_conditions': [

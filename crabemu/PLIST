@@ -1,0 +1,3 @@
+@comment $NetBSD$
+bin/crabemu
+${PLIST.SDL}bin/crabemu-sdl

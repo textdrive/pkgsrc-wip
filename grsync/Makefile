@@ -3,7 +3,7 @@
 
 DISTNAME=	grsync-0.9.3
 PKGREVISION=	1
-CATEGORIES=	wip
+CATEGORIES=	net
 MASTER_SITES=	http://www.opbyte.it/release/
 
 MAINTAINER=	pkgsrc@blackmouse.biz
@@ -23,4 +23,3 @@ REPLACE_BASH+=	src/grsync-batch
 BUILDLINK_API_DEPENDS.gtk2+=		gtk2+>=2.14.0
 .include "../../x11/gtk2/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
-

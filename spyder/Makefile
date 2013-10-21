@@ -1,7 +1,6 @@
 # $NetBSD$
-#
 
-DISTNAME=	spyder-2.1.6
+DISTNAME=	spyder-2.2.1
 PKGREVISION=	2
 CATEGORIES=	devel python
 MASTER_SITES=	http://spyderlib.googlecode.com/files/
@@ -9,37 +8,27 @@ EXTRACT_SUFX=	.zip
 
 MAINTAINER=	jihbed.research@gmail.com
 HOMEPAGE=	http://code.google.com/p/spyderlib/
-COMMENT=	Scientific Python Development Environment
+COMMENT=	Scientific PYthon Development EnviRonment
 LICENSE=	mit
 
-### Recommende dependency###
-DEPENDS+=	${PYPKGPREFIX}-scipy>=0.7.2:../../math/py-scipy
-DEPENDS+=	${PYPKGPREFIX}-cElementTree-[0-9]*:../../textproc/py-cElementTree 
-DEPENDS+=	${PYPKGPREFIX}-sphinx>=1.0.7:../../textproc/py-sphinx
+DEPENDS+=	${PYPKGPREFIX}-ipython>=0.13.1:../../devel/py-ipython013
+DEPENDS+=	${PYPKGPREFIX}-rope>=0.9.3:../../devel/py-rope
+DEPENDS+=	${PYPKGPREFIX}-sphinx>=1.1.3:../../textproc/py-sphinx
 
 USE_PKGLOCALEDIR=	yes
-USE_LANGUAGES=		# none
+USE_LANGUAGES= c		# none
 
-PLIST_SUBST+=	PYVERSSUFFIX=${PYVERSSUFFIX}
 PYDISTUTILSPKG=	yes
 
-INSTALLATION_DIRS=	share/applications
-
+INSTALLATION_DIRS=     share/applications
 post-extract:
 	${CP} ${FILESDIR}/spyder.desktop ${WRKSRC}
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/spyder.desktop ${DESTDIR}${PREFIX}/share/applications
 
-### Recommende dependency ###
-.include "../../devel/py-rope/buildlink3.mk"
-.include "../../graphics/py-imaging/buildlink3.mk"
-.include "../../graphics/py-matplotlib/buildlink3.mk"
+.include "../../lang/python/extension.mk"
 .include "../../math/py-numpy/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
-.include "../../x11/py-Tk/buildlink3.mk"
-###Requirements dependency ###
 .include "../../x11/py-qt4/buildlink3.mk"
-.include "../../x11/py-sip/buildlink3.mk"
-.include "../../lang/python/extension.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -2,6 +2,7 @@
 #
 
 DISTNAME=	pcsxr-1.9.92
+PKGREVISION=	2
 CATEGORIES=	emulators
 MASTER_SITES=	http://pcsxr.codeplex.com/downloads/get/140521
 EXTRACT_SUFX=	.tar.bz2
@@ -29,6 +30,8 @@ pre-configure:
 			cd ${WRKSRC} && ./autogen.sh
 
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
+BUILDLINK_DEPMETHOD.libXcursor=	build
+.include "../../x11/libXcursor/buildlink3.mk"
 .include "../../x11/libXv/buildlink3.mk"
 .include "../../x11/libXtst/buildlink3.mk"
 .include "../../x11/videoproto/buildlink3.mk"

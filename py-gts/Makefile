@@ -4,7 +4,7 @@
 DISTNAME=	pygts-0.3.1
 PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/py//}
 CATEGORIES=	graphics python
-MASTER_SITES=	http://garr.dl.sourceforge.net/project/pygts/pygts/0.3.1/
+MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=pygts/}
 
 MAINTAINER=	jihbed.research@gmail.com
 HOMEPAGE=	http://pygts.sourceforge.net/
@@ -25,7 +25,7 @@ do-test:
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/doc/gts.html ${DESTDIR}${DOCDIR}
 	${INSTALL_DATA} ${WRKSRC}/README.developers ${DESTDIR}${DOCDIR}
-	
+
 .include "../../lang/python/extension.mk"
 .include "../../math/py-numpy/buildlink3.mk"
 .include "../../wip/gts/buildlink3.mk"

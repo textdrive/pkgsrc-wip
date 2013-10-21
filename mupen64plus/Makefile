@@ -1,9 +1,8 @@
 # $NetBSD$
 #
 
-DISTNAME=	mupen64plus-bundle-src-1.99.5
+DISTNAME=	mupen64plus-bundle-src-2.0
 PKGNAME=	${DISTNAME:S/-bundle-src//}
-PKGREVISION=	1
 CATEGORIES=	emulators
 MASTER_SITES=	http://mupen64plus.googlecode.com/files/
 
@@ -24,21 +23,19 @@ INSTALL_ENV+=	MANDIR=${PREFIX}/${PKGMANDIR}
 
 .include "options.mk"
 
-.if $(OPSYS) != "Linux"
-BUILDLINK_TRANSFORM=    rm:-ldl
-.endif
-
 do-build:
-		cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${BASH} m64p_build.sh;
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${BASH} m64p_build.sh;
 
 do-install:
-		cd ${WRKSRC} && ${SETENV} ${INSTALL_ENV} ${BASH} m64p_install.sh;
+	cd ${WRKSRC} && ${SETENV} ${INSTALL_ENV} ${BASH} m64p_install.sh;
 
-
+.include "../../devel/boost-headers/buildlink3.mk"
+.include "../../graphics/glu/buildlink3.mk"
+BUILDLINK_DEPMETHOD.glu=build
 .include "../../graphics/MesaLib/buildlink3.mk"
+BUILDLINK_DEPMETHOD.MesaLib=build
 .include "../../mk/dlopen.buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
-#.include "../../x11/gtk2/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"
 .include "../../graphics/png/buildlink3.mk"
 .include "../../graphics/freetype2/buildlink3.mk"

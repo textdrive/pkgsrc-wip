@@ -5,7 +5,7 @@ DISTNAME=		sflphoned-0.6.1
 CATEGORIES=		chat
 MASTER_SITES=		http://www.sflphone.org/releases/
 
-MAINTAINER=		pancake@phreaker.net
+MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://www.sflphone.org/
 COMMENT=		Multiplatform softphone for IP telephony using SIP (VOIP)
 
@@ -21,5 +21,5 @@ CONFIGURE_ARGS+=	--disable-asound
 .include "../../wip/commoncpp2/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../devel/libosip/buildlink3.mk"
-.include "../../wip/ccrtp/buildlink3.mk"
+.include "../../net/ccrtp/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

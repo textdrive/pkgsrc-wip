@@ -1,0 +1,16 @@
+@comment $NetBSD$
+lib/vault-${PKGVERSION}/${HASKELL_VERSION}/Data/Unique/Really.hi
+lib/vault-${PKGVERSION}/${HASKELL_VERSION}/Data/Unique/Really.p_hi
+lib/vault-${PKGVERSION}/${HASKELL_VERSION}/Data/Vault/Lazy.hi
+lib/vault-${PKGVERSION}/${HASKELL_VERSION}/Data/Vault/Lazy.p_hi
+lib/vault-${PKGVERSION}/${HASKELL_VERSION}/Data/Vault/ST/Lazy.hi
+lib/vault-${PKGVERSION}/${HASKELL_VERSION}/Data/Vault/ST/Lazy.p_hi
+lib/vault-${PKGVERSION}/${HASKELL_VERSION}/Data/Vault/ST/Strict.hi
+lib/vault-${PKGVERSION}/${HASKELL_VERSION}/Data/Vault/ST/Strict.p_hi
+lib/vault-${PKGVERSION}/${HASKELL_VERSION}/Data/Vault/Strict.hi
+lib/vault-${PKGVERSION}/${HASKELL_VERSION}/Data/Vault/Strict.p_hi
+lib/vault-${PKGVERSION}/${HASKELL_VERSION}/HSvault-${PKGVERSION}.o
+lib/vault-${PKGVERSION}/${HASKELL_VERSION}/libHSvault-${PKGVERSION}.a
+lib/vault-${PKGVERSION}/${HASKELL_VERSION}/libHSvault-${PKGVERSION}_p.a
+lib/vault-${PKGVERSION}/${HASKELL_VERSION}/package-description
+share/doc/vault-${PKGVERSION}/LICENSE

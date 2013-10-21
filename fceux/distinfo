@@ -1,8 +1,7 @@
 $NetBSD$
 
-SHA1 (fceux-2.1.5.src.tar.bz2) = 599ef6a261ab1bd24e58468886d7cc303e150feb
-RMD160 (fceux-2.1.5.src.tar.bz2) = 9852e6f0958d0ec8d926257e78b34579ef10af85
-Size (fceux-2.1.5.src.tar.bz2) = 7322199 bytes
-SHA1 (patch-SConstruct) = 09fe149eefd00b6d607462ae82f20544ec11bc01
-SHA1 (patch-src_file.cpp) = e6fad155e7fa70cf8681e0defd262137fd6684b6
-SHA1 (patch-src_utils_endian.h) = b5f1ee41a8cb4e9008154c11ebff8b330557601d
+SHA1 (fceux-2.2.1.1.src.tar.gz) = a9e7babf7a883bfa17ee7cc4a1989382dfbced65
+RMD160 (fceux-2.2.1.1.src.tar.gz) = db36c21cba027f840cf5c64f90248e57b47e7757
+Size (fceux-2.2.1.1.src.tar.gz) = 8878420 bytes
+SHA1 (patch-SConstruct) = b2b3298624cb9267ac4deba9a0e8b75339c6533c
+SHA1 (patch-src_utils_ioapi.cpp) = 42d220fc2585f12d5711a4a6164c43b1fa736b85

@@ -2,7 +2,7 @@
 #
 
 DISTNAME=	muine-0.8.11
-PKGREVISION=	2
+PKGREVISION=	4
 CATEGORIES=	audio gnome
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/muine/0.8/}
 
@@ -21,6 +21,8 @@ GCONF_SCHEMAS=		muine.schemas
 
 BUILDLINK_TRANSFORM+=	rm:-Werror
 
+
+.include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../audio/flac/buildlink3.mk"
 .include "../../audio/faad2/buildlink3.mk"
 .include "../../audio/libid3tag/buildlink3.mk"
@@ -33,12 +35,11 @@ BUILDLINK_TRANSFORM+=	rm:-Werror
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../multimedia/gstreamer0.10/buildlink3.mk"
 .include "../../x11/gtk2/buildlink3.mk"
-.include "../../lang/mono/buildlink3.mk"
+.include "../../lang/mono2/buildlink3.mk"
 .include "../../multimedia/libogg/buildlink3.mk"
 .include "../../wip/taglib-sharp/buildlink3.mk"
 .include "../../sysutils/ndesk-dbus/buildlink3.mk"
 .include "../../sysutils/ndesk-dbus-glib/buildlink3.mk"
 .include "../../x11/gnome-sharp/buildlink3.mk"
 .include "../../x11/gtk-sharp/buildlink3.mk"
-
 .include "../../mk/bsd.pkg.mk"

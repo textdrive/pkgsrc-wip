@@ -2,7 +2,7 @@
 #
 
 DISTNAME=	grisbi-0.5.9
-PKGREVISION=	1
+PKGREVISION=	2
 CATEGORIES=	finance
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=grisbi/}
 EXTRACT_SUFX=	.tar.bz2
@@ -15,7 +15,7 @@ GNU_CONFIGURE=	yes
 USE_TOOLS+=	pkg-config intltool gmake
 
 
-INSTALLATION_DIRS=	${PKGMANDIR}/man1 ${PREFIX}/share/applications/
+INSTALLATION_DIRS=	${PREFIX}${PKGMANDIR}/man1 ${PREFIX}/share/applications/
 
 PKG_OPTIONS_VAR=                PKG_OPTIONS.gribsi
 PKG_SUPPORTED_OPTIONS=          libofx
@@ -36,6 +36,7 @@ post-install:
 			${DESTDIR}${PREFIX}/share/applications/
 
 
+.include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../databases/shared-mime-info/mimedb.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"

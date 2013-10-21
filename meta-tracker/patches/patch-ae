@@ -1,13 +1,15 @@
 $NetBSD$
 
---- data/Makefile.in.orig	2010-02-04 10:56:46.000000000 +0000
-+++ data/Makefile.in
-@@ -367,7 +367,7 @@ GTESTER_REPORT = gtester-report
- # initialize variables for unconditional += appending
- TEST_PROGS = 
- SUBDIRS = db dbus modules languages icons services
+use pkgsrc gnome path.
+
+--- data/Makefile.in.orig	2013-08-01 07:18:25.000000000 +0900
++++ data/Makefile.in	2013-10-16 18:19:32.000000000 +0900
+@@ -512,7 +512,7 @@ desktop_in_files = \
+ 
+ 
+ # Third we choose what we want installed based on config
 -autostartdir = $(sysconfdir)/xdg/autostart
 +autostartdir = $(prefix)/share/gnome/autostart
- autostart_in_in_files = trackerd.desktop.in.in
- autostart_in_files = trackerd.desktop.in
- autostart_DATA = trackerd.desktop
+ autostart_DATA = tracker-store.desktop $(am__append_1) $(am__append_2)
+ 
+ # Set up pkg-config .pc files for exported libraries

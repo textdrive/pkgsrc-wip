@@ -7,9 +7,9 @@ CATEGORIES=		textproc
 MASTER_SITES=		http://xml.apache.org/dist/crimson/
 EXTRACT_SUFX=		.zip
 
-MAINTAINER=		pancake@phreaker.net
+MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://xml.apache.org/dist/crimson/
-COMMENT=		XML parser for JAXP with DOM and SAX2.
+COMMENT=		XML parser for JAXP with DOM and SAX2
 
 WRKSRC=		${WRKDIR}/crimson-1.1.3
 

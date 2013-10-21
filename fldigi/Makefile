@@ -1,9 +1,11 @@
 # $NetBSD: Makefile,v 1.17 2012/09/28 13:41:30 gdt Exp $
 #
 
-DISTNAME=	fldigi-3.21.60
+DISTNAME=	fldigi-3.21.76
 CATEGORIES=	ham
 MASTER_SITES=	http://www.w1hkj.com/downloads/fldigi/
+MASTER_SITES+=	http://www.w1hkj.com/alpha/fldigi/v3.21/
+MASTER_SITES+=	http://lists.berlios.de/tmp/df/fldigi-3.21/
 LICENSE=	gnu-gpl-v3
 
 MAINTAINER=	makoto@ki.nu
@@ -48,6 +50,11 @@ CHECK_WRKREF_SKIP+=	bin/fldigi
 CONFIGURE_ENV+=		ac_cv_header_execinfo_h=no
 .endif
 
+.include "../../mk/compiler.mk"
+.if !empty(PKGSRC_COMPILER:Mclang)
+CXXFLAGS+=	-std=c++11 -Wno-error=c++11-narrowing
+.endif
+
 .include "../../audio/libsamplerate/buildlink3.mk"
 .include "../../audio/libsndfile/buildlink3.mk"
 .include "../../audio/portaudio-devel/buildlink3.mk"
@@ -56,8 +63,7 @@ CONFIGURE_ENV+=		ac_cv_header_execinfo_h=no
 .include "../../ham/hamlib/buildlink3.mk"
 .include "../../mk/oss.buildlink3.mk"
 .include "../../textproc/xmlrpc-c/buildlink3.mk"
-# See options.mk
-#.include "../../x11/fltk/buildlink3.mk"
-.include "options.mk"
+.include "../../x11/fltk13/buildlink3.mk"
+
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../mk/bsd.pkg.mk"

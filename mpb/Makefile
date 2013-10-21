@@ -16,6 +16,8 @@ USE_LANGUAGES=	c fortran77
 USE_TOOLS+=	gsed
 
 CONFIGURE_ARGS+=--with-libctl=${BUILDLINK_PREFIX.libctl}/share/libctl
+# Prevent picking up wrong sh:
+CONFIGURE_ENV+=	SH_JOB=$(TOOLS_PATH.sh)
 CFLAGS+=	-DH5_USE_16_API=1
 
 .include "../../math/blas/buildlink3.mk"
@@ -23,5 +25,5 @@ CFLAGS+=	-DH5_USE_16_API=1
 .include "../../devel/hdf5/buildlink3.mk"
 .include "../../math/fftw2/buildlink3.mk"
 .include "../../devel/readline/buildlink3.mk"
-.include "../../wip/libctl/buildlink3.mk"
+.include "../../devel/libctl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

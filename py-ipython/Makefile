@@ -59,14 +59,14 @@ DEPENDS+=	${PYPKGPREFIX}-sphinx-[0-9]*:../../textproc/py-sphinx
 
 # X11 dependency section
 
-.include "../../x11/py-Tk/buildlink3.mk"
+DEPENDS+=	${PYPKGPREFIX}-Tk-[0-9]*:../../x11/py-Tk
 .include "../../x11/py-gtk2/buildlink3.mk"
 .include "../../x11/py-qt4/buildlink3.mk"
 .include "../../x11/py-wxWidgets/buildlink3.mk"
 
 # www dependency section
 
-DEPENDS+=	zope3-[0-9]*:../../www/zope3
+#DEPENDS+=	zope3-[0-9]*:../../www/zope3
 
 PLIST_SRC+=	PLIST
 PLIST_SRC+=	${PKGDIR}/PLIST.doc

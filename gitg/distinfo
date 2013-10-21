@@ -1,6 +1,5 @@
 $NetBSD$
 
-SHA1 (gitg-0.0.8.tar.bz2) = c3d378a158118ff0ac0f3a02bcb3b57010f35d47
-RMD160 (gitg-0.0.8.tar.bz2) = 9dd4edc549ad7e7addcce47e1af3639775365415
-Size (gitg-0.0.8.tar.bz2) = 535076 bytes
-SHA1 (patch-aa) = 93ee6a37f9f120c6bea27681cb554c148422d602
+SHA1 (gitg-0.2.7.tar.xz) = 7b1428819666e4797d64dc94bb1624d5e7b75e6a
+RMD160 (gitg-0.2.7.tar.xz) = 0344a5935ee9b2186533dbef01f5a4174b16a0e1
+Size (gitg-0.2.7.tar.xz) = 528904 bytes

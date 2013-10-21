@@ -1,110 +1,110 @@
 # $NetBSD$
 
 PKG_OPTIONS_VAR=	PKG_OPTIONS.aspell-dictionaries
-PKG_SUPPORTED_OPTIONS=	breton catalan czech danish dutch english esperanto
-PKG_SUPPORTED_OPTIONS+= faroese finnish francais gaeilge german greek italian
-PKG_SUPPORTED_OPTIONS+= norwegian polish portuguese romanian russian slovak
-PKG_SUPPORTED_OPTIONS+= spanish svenska telugu ukrainian welsh
+PKG_SUPPORTED_OPTIONS=	lang-br lang-ca lang-cs lang-cy lang-da lang-de lang-el
+PKG_SUPPORTED_OPTIONS+= lang-en lang-eo lang-es lang-fi lang-fo lang-fr lang-ga
+PKG_SUPPORTED_OPTIONS+= lang-it lang-nb lang-nl lang-pl lang-pt lang-ro lang-ru
+PKG_SUPPORTED_OPTIONS+= lang-sk lang-sv lang-te lang-uk
 PKG_SUGGESTED_OPTIONS=	${PKG_SUPPORTED_OPTIONS}
 
 .include "../../mk/bsd.options.mk"
 
-.if !empty(PKG_OPTIONS:Mbreton)
-DEPENDS+=	aspell-breton>=0.50.2:../../textproc/aspell-breton
+.if !empty(PKG_OPTIONS:Mlang-br)
+DEPENDS+=	aspell-br>=0.50.2:../../textproc/aspell-br
 .endif
 
-.if !empty(PKG_OPTIONS:Mcatalan)
-DEPENDS+=	aspell-catalan>=20040130.1:../../textproc/aspell-catalan
+.if !empty(PKG_OPTIONS:Mlang-ca)
+DEPENDS+=	aspell-ca>=20040130.1:../../textproc/aspell-ca
 .endif
 
-.if !empty(PKG_OPTIONS:Mczech)
-DEPENDS+=	aspell-czech>=20040614.1:../../textproc/aspell-czech
+.if !empty(PKG_OPTIONS:Mlang-cs)
+DEPENDS+=	aspell-cs>=20040614.1:../../textproc/aspell-cs
 .endif
 
-.if !empty(PKG_OPTIONS:Mdanish)
-DEPENDS+=	aspell-danish>=1.4.52:../../textproc/aspell-danish
+.if !empty(PKG_OPTIONS:Mlang-cy)
+DEPENDS+=	aspell-cy>=0.50.3:../../textproc/aspell-cy
 .endif
 
-.if !empty(PKG_OPTIONS:Mdutch)
-DEPENDS+=	aspell-dutch>=0.50.2:../../textproc/aspell-dutch
+.if !empty(PKG_OPTIONS:Mlang-da)
+DEPENDS+=	aspell-da>=1.4.52:../../textproc/aspell-da
 .endif
 
-.if !empty(PKG_OPTIONS:Menglish)
-DEPENDS+=	aspell-english>=6.0.0:../../textproc/aspell-english
+.if !empty(PKG_OPTIONS:Mlang-de)
+DEPENDS+=	aspell-de>=20030222.1:../../textproc/aspell-de
 .endif
 
-.if !empty(PKG_OPTIONS:Mesperanto)
-DEPENDS+=	aspell-esperanto>=0.50.2:../../textproc/aspell-esperanto
+.if !empty(PKG_OPTIONS:Mlang-el)
+DEPENDS+=	aspell-el>=0.50.3:../../textproc/aspell-el
 .endif
 
-.if !empty(PKG_OPTIONS:Mfaroese)
-DEPENDS+=	aspell-faroese>=0.2.24:../../textproc/aspell-faroese
+.if !empty(PKG_OPTIONS:Mlang-en)
+DEPENDS+=	aspell-en>=6.0.0:../../textproc/aspell-en
 .endif
 
-.if !empty(PKG_OPTIONS:Mfinnish)
-DEPENDS+=	aspell-finnish>=0.7.0:../../wip/aspell-finnish
+.if !empty(PKG_OPTIONS:Mlang-eo)
+DEPENDS+=	aspell-eo>=0.50.2:../../textproc/aspell-eo
 .endif
 
-.if !empty(PKG_OPTIONS:Mfrancais)
-DEPENDS+=	aspell-francais>=0.50.3:../../textproc/aspell-francais
+.if !empty(PKG_OPTIONS:Mlang-es)
+DEPENDS+=	aspell-es>=0.50.2:../../textproc/aspell-es
 .endif
 
-.if !empty(PKG_OPTIONS:Mgaeilge)
-DEPENDS+=	aspell-gaeilge>=3.5.0:../../textproc/aspell-gaeilge
+.if !empty(PKG_OPTIONS:Mlang-fi)
+DEPENDS+=	aspell-fi>=0.7.0:../../textproc/aspell-fi
 .endif
 
-.if !empty(PKG_OPTIONS:Mgerman)
-DEPENDS+=	aspell-german>=20030222.1:../../textproc/aspell-german
+.if !empty(PKG_OPTIONS:Mlang-fo)
+DEPENDS+=	aspell-fo>=0.2.24:../../textproc/aspell-fo
 .endif
 
-.if !empty(PKG_OPTIONS:Mgreek)
-DEPENDS+=	aspell-greek>=0.50.3:../../textproc/aspell-greek
+.if !empty(PKG_OPTIONS:Mlang-fr)
+DEPENDS+=	aspell-fr>=0.50.3:../../textproc/aspell-fr
 .endif
 
-.if !empty(PKG_OPTIONS:Mitalian)
-DEPENDS+=	aspell-italian>=0.53.0:../../textproc/aspell-italian
+.if !empty(PKG_OPTIONS:Mlang-ga)
+DEPENDS+=	aspell-ga>=3.5.0:../../textproc/aspell-ga
 .endif
 
-.if !empty(PKG_OPTIONS:Mnorwegian)
-DEPENDS+=	aspell-norwegian>=0.50.1.0:../../textproc/aspell-norwegian
+.if !empty(PKG_OPTIONS:Mlang-it)
+DEPENDS+=	aspell-it>=0.53.0:../../textproc/aspell-it
 .endif
 
-.if !empty(PKG_OPTIONS:Mpolish)
-DEPENDS+=	aspell-polish>=0.51.0:../../textproc/aspell-polish
+.if !empty(PKG_OPTIONS:Mlang-nb)
+DEPENDS+=	aspell-nb>=0.50.1.0:../../textproc/aspell-nb
 .endif
 
-.if !empty(PKG_OPTIONS:Mportuguese)
-DEPENDS+=	aspell-portuguese>=0.50.2:../../textproc/aspell-portuguese
+.if !empty(PKG_OPTIONS:Mlang-nl)
+DEPENDS+=	aspell-nl>=0.50.2:../../textproc/aspell-nl
 .endif
 
-.if !empty(PKG_OPTIONS:Mromanian)
-DEPENDS+=	aspell-romanian>=0.50.2:../../textproc/aspell-romanian
+.if !empty(PKG_OPTIONS:Mlang-pl)
+DEPENDS+=	aspell-pl>=0.51.0:../../textproc/aspell-pl
 .endif
 
-.if !empty(PKG_OPTIONS:Mrussian)
-DEPENDS+=	aspell-russian>=0.99f7.1:../../textproc/aspell-russian
+.if !empty(PKG_OPTIONS:Mlang-pt)
+DEPENDS+=	aspell-pt_PT>=0.50.2:../../textproc/aspell-pt_PT
 .endif
 
-.if !empty(PKG_OPTIONS:Mslovak)
-DEPENDS+=	aspell-slovak>=0.52.0:../../textproc/aspell-slovak
+.if !empty(PKG_OPTIONS:Mlang-ro)
+DEPENDS+=	aspell-ro>=0.50.2:../../textproc/aspell-ro
 .endif
 
-.if !empty(PKG_OPTIONS:Mspanish)
-DEPENDS+=	aspell-spanish>=0.50.2:../../textproc/aspell-spanish
+.if !empty(PKG_OPTIONS:Mlang-ru)
+DEPENDS+=	aspell-ru>=0.99f7.1:../../textproc/aspell-ru
 .endif
 
-.if !empty(PKG_OPTIONS:Msvenska)
-DEPENDS+=	aspell-svenska>=0.51.0:../../textproc/aspell-svenska
+.if !empty(PKG_OPTIONS:Mlang-sk)
+DEPENDS+=	aspell-sk>=0.52.0:../../textproc/aspell-sk
 .endif
 
-.if !empty(PKG_OPTIONS:Mtelugu)
-DEPENDS+=	aspell-telugu>=0.01.2:../../wip/aspell-telugu
+.if !empty(PKG_OPTIONS:Mlang-sv)
+DEPENDS+=	aspell-sv>=0.51.0:../../textproc/aspell-sv
 .endif
 
-.if !empty(PKG_OPTIONS:Mukrainian)
-DEPENDS+=	aspell-ukrainian>=1.1.0:../../textproc/aspell-ukrainian
+.if !empty(PKG_OPTIONS:Mlang-te)
+DEPENDS+=	aspell-te>=0.01.2:../../textproc/aspell-te
 .endif
 
-.if !empty(PKG_OPTIONS:Mwelsh)
-DEPENDS+=	aspell-welsh>=0.50.3:../../textproc/aspell-welsh
+.if !empty(PKG_OPTIONS:Mlang-uk)
+DEPENDS+=	aspell-uk>=1.1.0:../../textproc/aspell-uk
 .endif

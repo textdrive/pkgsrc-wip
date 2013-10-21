@@ -6,7 +6,7 @@ PKGREVISION=		2
 CATEGORIES=		lang
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=jcvm/}
 
-MAINTAINER=		pancake@phreaker.net
+MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://jcvm.sourceforge.net/
 COMMENT=		Native java compiler using gcc
 
@@ -14,6 +14,7 @@ PKG_DESTDIR_SUPPORT=	none
 
 USE_PKGLOCALEDIR=	yes
 GNU_CONFIGURE=		yes
+USE_LIBTOOL=		yes
 USE_TOOLS+=	makeinfo
 INFO_FILES=	# PLIST
 

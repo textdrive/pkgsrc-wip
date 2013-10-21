@@ -34,13 +34,13 @@ INSTALLATION_DIRS=	${FONTDIR} ${DOCDIR}
 post-extract:
 	${RUN}								\
 	for f in ${WRKSRC}/*.TTF ; do					\
-		${MV} $$f `echo $$f | ${SED} 's|TTF$$|ttf|'`;		\
+		${MV} $$f `${ECHO} $$f | ${SED} 's|TTF$$|ttf|'`;		\
 	done
 
 do-install:
 	cd ${WRKSRC} && for f in *.ttf ; do \
 		${INSTALL_DATA} $$f ${DESTDIR}${FONTDIR}/$$f; \
 	done
-	${INSTALL_DATA} ${.CURDIR}/../../licenses/${LICENSE} ${DESTDIR}${DOCDIR}
+	${INSTALL_DATA} ${.CURDIR}/../../licenses/${LICENSE:Q} ${DESTDIR}${DOCDIR}
 
 .include "../../mk/bsd.pkg.mk"

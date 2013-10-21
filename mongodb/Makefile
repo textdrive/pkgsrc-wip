@@ -1,7 +1,8 @@
 # $NetBSD$
 
-DISTNAME=	mongodb-src-r2.2.0
+DISTNAME=	mongodb-src-r2.4.6
 PKGNAME=	${DISTNAME:S/src-r//}
+PKGREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	http://downloads.mongodb.org/src/
 
@@ -13,12 +14,10 @@ LICENSE=	gnu-agpl-v3 # Client and tools licensed under apache-2.0
 NO_CONFIGURE=	yes
 USE_LANGUAGES=	c c++
 
-BUILD_DEPENDS+=	scons:../../devel/scons
+BUILD_DEPENDS+=	scons-[0-9]*:../../devel/scons
 
 SCONS_BIN=	${PREFIX}/bin/scons
 SCONS_ARGS=	${_MAKE_JOBS}
-# Does not build with lang/spidermonkey yet
-# SCONS_ARGS+=	--use-system-all=USE-SYSTEM-ALL
 SCONS_ARGS+=	--use-system-tcmalloc=USE-SYSTEM-TCMALLOC
 SCONS_ARGS+=	--use-system-pcre=USE-SYSTEM-PCRE
 SCONS_ARGS+=	--use-system-boost=USE-SYSTEM-BOOST
@@ -26,6 +25,20 @@ SCONS_ARGS+=	--use-system-snappy=USE-SYSTEM-SNAPPY
 
 SCONS_ARGS+=	--cc=${WRAPPER_BINDIR}/${CC}
 SCONS_ARGS+=	--cxx=${WRAPPER_BINDIR}/${CXX}
+
+.include "../../mk/bsd.fast.prefs.mk"
+
+.if defined(MAKE_JOBS)
+MAKE_JOBS=	2
+.endif
+
+.if ${MACHINE_ARCH} == "x86_64"
+SCONS_ARGS+=	--64
+.else
+SCONS_ARGS+=	--32
+.endif
+
+CFLAGS+=	-fno-jump-tables
 
 .include "options.mk"
 
@@ -106,9 +119,8 @@ post-install:
 .include "../../devel/boost-headers/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
 .include "../../devel/boost-python/buildlink3.mk"
+.include "../../devel/libexecinfo/buildlink3.mk"
 .include "../../devel/pcre/buildlink3.mk"
 .include "../../devel/snappy/buildlink3.mk"
-# Disabling until this can be made to work
-# .include "../../lang/spidermonkey/buildlink3.mk"
 .include "../../net/libpcap/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

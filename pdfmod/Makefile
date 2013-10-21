@@ -2,6 +2,7 @@
 #
 
 DISTNAME=	pdfmod-0.9.1
+PKGREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_GNOME:=sources/pdfmod/0.9/}
 EXTRACT_SUFX=	.tar.bz2
@@ -15,11 +16,12 @@ GNU_CONFIGURE=		yes
 USE_PKGLOCALEDIR=	yes
 USE_TOOLS+=		pkg-config intltool msgfmt gmake
 USE_LANGUAGES=		c c++
+REPLACE_SH=		icon-theme-installer
 
 INSTALLATION_DIRS+=	lib/pdfmod
 
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
-.include "../../lang/mono/buildlink3.mk"
+.include "../../lang/mono2/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../textproc/gnome-doc-utils/buildlink3.mk"
 BUILDLINK_API_DEPENDS.hyena+=	hyena>=0.5

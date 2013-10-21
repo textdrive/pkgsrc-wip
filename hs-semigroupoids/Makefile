@@ -1,16 +1,17 @@
 # $NetBSD$
 #
 
-DISTNAME=	semigroupoids-1.2.6
+DISTNAME=	semigroupoids-4.0
 CATEGORIES=	math
 
 MAINTAINER=	pho@cielonegro.org
-COMMENT=	Haskell 98 semigroupoids: Category sans id
+COMMENT=	Semigroupoids: Category sans id
 LICENSE=	modified-bsd
 
 .include "../../wip/mk/haskell.mk"
 .include "../../wip/hs-comonad/buildlink3.mk"
 .include "../../wip/hs-contravariant/buildlink3.mk"
+.include "../../wip/hs-distributive/buildlink3.mk"
 .include "../../wip/hs-semigroups/buildlink3.mk"
 .include "../../wip/hs-transformers/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

@@ -4,8 +4,7 @@
 DISTNAME=	jdksmidi-20121031-1
 PKGNAME=	lib${DISTNAME:S/-1/r1/}
 CATEGORIES=	audio
-MASTER_SITES=	https://github.com/downloads/jdkoftinoff/jdksmidi/
-FETCH_USING=	curl
+MASTER_SITES=	http://dist.jdkoftinoff.com/jdksmidi/
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.jdkoftinoff.com/main/Free_Projects/C++_MIDI_Library/
@@ -31,6 +30,7 @@ SUBST_SED.bash=		-e "s|/bin/bash|${BASH}|1"
 
 INSTALL_ENV+=		TAR=${GTAR} TARGET_MAN_DIR=${PKGMANDIR}
 INSTALL_ENV+=		TARGET_INSTALL_DEV_DIR=${DESTDIR}${PREFIX}
+INSTALLATION_DIRS+=	${PKG_SYSCONFDIR}
 
 
 .include "../../mk/bsd.pkg.mk"

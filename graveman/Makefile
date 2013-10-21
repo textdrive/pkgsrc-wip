@@ -2,12 +2,12 @@
 #
 
 DISTNAME=		graveman-0.3.12-5
-PKGREVISION=		2
+PKGREVISION=		3
 CATEGORIES=		sysutils
 MASTER_SITES=		http://graveman.tuxfamily.org/sources/
 EXTRACT_SUFX=		.tar.bz2
 
-MAINTAINER=		pancake@phreaker.net
+MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://graveman.tuxfamily.org/
 COMMENT=		GTK2 frontend for CD writing and audio conversion
 
@@ -23,6 +23,8 @@ USE_TOOLS+=		gmake intltool pkg-config
 
 BUILDLINK_API_DEPENDS.libglade+=	libglade>=2.4.0
 
+
+.include "../../sysutils/desktop-file-utils/desktopdb.mk"
 .include "../../devel/atk/buildlink3.mk"
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/libglade/buildlink3.mk"

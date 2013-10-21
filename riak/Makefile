@@ -1,9 +1,8 @@
 # $NetBSD$
-#
 
-DISTNAME=		riak-1.2.0
+DISTNAME=		riak-1.4.0
 CATEGORIES=		databases
-MASTER_SITES=		http://s3.amazonaws.com/downloads.basho.com/riak/1.2/${PKGVERSION}/
+MASTER_SITES=		http://s3.amazonaws.com/downloads.basho.com/riak/1.4/${PKGVERSION}/
 
 MAINTAINER=		filip@joyent.com
 HOMEPAGE=		http://www.basho.com/products_riak_overview.php
@@ -11,9 +10,17 @@ COMMENT=		Distributed, highly available data store
 LICENSE=		apache-2.0
 
 CONFLICTS+=		riakeds-[0-9]*
+.if exists(../../devel/git/Makefile)
+BUILD_DEPENDS+=		git-base-[0-9]*:../../devel/git-base
+.else
+BUILD_DEPENDS+=		scmgit-base-[0-9]*:../../devel/scmgit-base
+.endif
 
 USE_LANGUAGES=		c c++
+USE_LIBTOOL=		yes
 USE_TOOLS=		gmake
+
+MAKE_JOBS_SAFE=		no
 
 DISTFILES=		${DEFAULT_DISTFILES}
 EXTRACT_ONLY=		${DISTNAME}${EXTRACT_SUFX}
@@ -26,7 +33,7 @@ EXTRACT_ONLY+=		${INNOSTORE}
 .include "../../mk/bsd.prefs.mk"
 .include "options.mk"
 
-.include "../../lang/erlang/Makefile.versions"
+.include "../../wip/erlang15/Makefile.versions"
 .include "Makefile.versions"
 
 BUILD_DEFS+=		VARBASE RIAK_USER RIAK_GROUP
@@ -50,6 +57,10 @@ PKG_SYSCONFSUBDIR=	riak
 CONF_FILES+=		share/examples/riak/app.config ${PKG_SYSCONFDIR}/app.config
 CONF_FILES+=		share/examples/riak/vm.args ${PKG_SYSCONFDIR}/vm.args
 
+SMF_USER=		${RIAK_USER}
+SMF_GROUP=		${RIAK_GROUP}
+SMF_HOME=		${RIAK_DATA}
+
 BUILD_TARGET=		rel
 PLIST_VARS+=		innostore dtrace
 
@@ -58,10 +69,10 @@ PLIST.dtrace=		yes
 .endif
 
 SUBST_CLASSES+=		pkgsrc
-SUBST_STAGE.pkgsrc=	post-patch
+SUBST_STAGE.pkgsrc=	pre-build
 SUBST_MESSAGE.pkgsrc=	Fixing pkgsrc locations and tools
 SUBST_FILES.pkgsrc=	rel/vars.config
-SUBST_VARS.pkgsrc=	PREFIX PKG_SYSCONFDIR
+SUBST_VARS.pkgsrc=	PREFIX PKG_SYSCONFDIR PKGVERSION_NOREV
 SUBST_VARS.pkgsrc+=	RIAK_USER RIAK_DATA RIAK_LOG
 
 REPLACE_INTERPRETER+=	escript
@@ -70,6 +81,14 @@ REPLACE.escript.new=	${BUILDLINK_PREFIX.erlang}/bin/escript
 REPLACE_FILES.escript=	rel/files/nodetool
 REPLACE_FILES.escript+=	${WRKDIR}/innostore-${INNOVER}/priv/innodump
 REPLACE_FILES.escript+=	${WRKDIR}/innostore-${INNOVER}/priv/innoload
+
+FILES_SUBST+=		ERTS_VERSION=${VERSION.erts}
+FILES_SUBST+=		RIAK_USER=${RIAK_USER}
+FILES_SUBST+=		RIAK_GROUP=${RIAK_GROUP}
+
+CHECK_INTERPRETER_SKIP=	riak/lib/bitcask-${VERSION.bitcask}/priv/Run-eunit-loop.expect
+CHECK_INTERPRETER_SKIP+=riak/erts-${VERSION.erts}/bin/nodetool
+CHECK_INTERPRETER_SKIP+=riak/lib/riaknostic/riaknostic
 
 CHECK_PORTABILITY_SKIP+=	tests/riak_search/run_all.sh	\
 				deps/riak_search/tests/riak_search/run_all.sh
@@ -90,12 +109,19 @@ post-extract:
 	  ${WRKDIR}/innostore-${INNOVER}/c_src/patches
 	cp ${FILESDIR}/js-src-jslock.c.patch \
 	  ${WRKSRC}/deps/erlang_js/c_src/patches
+	cp ${FILESDIR}/snappy-libtool.patch \
+	  ${WRKSRC}/deps/eleveldb/c_src/
 
 do-install:
-	${MKDIR} ${WRKSRC}/package/pkgsrc
-	${INSTALL_DATA} ${FILESDIR}/Makefile ${WRKSRC}/package/pkgsrc
-	cd ${WRKSRC}/package && ${SETENV} ${INSTALL_ENV} ${MAKE_ENV}    \
-           ${MAKE_PROGRAM} ${MAKE_FLAGS} ${INSTALL_MAKE_FLAGS} package
+	${MKDIR} ${WRKSRC}/deps/node_package/priv/templates/pkgsrc
+	${INSTALL_DATA} ${FILESDIR}/Makefile \
+	  ${WRKSRC}/deps/node_package/priv/templates/pkgsrc
+	cd ${WRKSRC}/deps/node_package/priv/templates/pkgsrc && \
+	   ${SETENV} ${INSTALL_ENV} ${MAKE_ENV} \
+	   RIAK_PATH=${WRKSRC} VERSION_STRING=${PKGVERSION_NOREV} \
+           ${MAKE_PROGRAM} ${MAKE_FLAGS} ${INSTALL_MAKE_FLAGS}
 
-.include "../../lang/erlang/buildlink3.mk"
+.include "../../devel/ncurses/buildlink3.mk"
+BUILDLINK_DEPMETHOD.erlang=	build
+.include "../../wip/erlang15/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

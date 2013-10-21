@@ -26,7 +26,7 @@ TEST_TARGET=		check
 
 # Section for VCS-based package:
 
-PKGNAME=		maxima-5.27.99
+PKGNAME=		maxima-5.99
 
 GIT_REPOSITORIES=	maxima
 GIT_REPO.maxima=	git://maxima.git.sourceforge.net/gitroot/maxima/maxima
@@ -41,7 +41,7 @@ SUBST_CLASSES+=			fix-version
 SUBST_STAGE.fix-version=	post-patch
 SUBST_MESSAGE.fix-version=	Fixing package version.
 SUBST_FILES.fix-version=	configure.in
-SUBST_SED.fix-version=		-e 's:AM_INIT_AUTOMAKE(maxima,[^)]*):AM_INIT_AUTOMAKE(maxima,${PKGVERSION_NOREV}):'
+SUBST_SED.fix-version=		-e 's:AC_INIT(\[maxima\], *\[.*\]):AC_INIT([maxima],[${PKGVERSION_NOREV}]):'
 
 PYTHON_FOR_BUILD_ONLY=	yes
 ALL_ENV+=	PYTHONBIN=$(PYTHONBIN:Q)

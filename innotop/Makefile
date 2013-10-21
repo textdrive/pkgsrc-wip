@@ -1,8 +1,8 @@
 # $NetBSD$
 #
 
-DISTNAME=	innotop-1.7.2
-CATEGORIES=	wip databases
+DISTNAME=	innotop-1.9.1
+CATEGORIES=	databases
 MASTER_SITES=	http://innotop.googlecode.com/files/
 
 MAINTAINER=	filip@joyent.com
@@ -12,7 +12,7 @@ LICENSE=	gnu-gpl-v2
 
 DEPENDS+=	p5-Term-ReadKey>=2.10:../../devel/p5-Term-ReadKey
 DEPENDS+=	p5-DBI>=1.13:../../databases/p5-DBI
-DEPENDS+=	p5-DBD-mysql>=1.0:../../databases/p5-DBD-mysql
+DEPENDS+=	p5-DBD-{mysql,percona}*-[0-9]*:../../databases/p5-DBD-mysql
 
 PERL5_PACKLIST=	auto/innotop/.packlist
 REPLACE_PERL=	innotop

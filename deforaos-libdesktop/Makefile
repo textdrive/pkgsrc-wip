@@ -1,9 +1,11 @@
 # $NetBSD$
+#
 
-DISTNAME=	libDesktop-0.0.8
-PKGNAME=	deforaos-libdesktop-0.0.8
-CATEGORIES=	wip
-MASTER_SITES=	http://www.defora.org/os/download/download/3699/
+DISTNAME=	libDesktop-0.0.9
+PKGNAME=	deforaos-libdesktop-0.0.9
+PKGREVISION=	1
+CATEGORIES=	x11
+MASTER_SITES=	http://www.defora.org/os/download/download/4011/
 
 MAINTAINER=	khorben@defora.org
 HOMEPAGE=	http://www.defora.org/
@@ -17,6 +19,6 @@ MAKE_FLAGS+=	DESTDIR=${DESTDIR}
 MAKE_FLAGS+=	PREFIX=${PREFIX}
 
 .include "../../wip/deforaos-libsystem/buildlink3.mk"
-.include "../../x11/gtk2/buildlink3.mk"
+.include "../../x11/gtk3/buildlink3.mk"
 .include "../../textproc/gtk-doc/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

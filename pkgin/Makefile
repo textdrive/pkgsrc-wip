@@ -1,9 +1,12 @@
 # $NetBSD$
 #
 
-DISTNAME=		pkgin-20120730
+VERSION=		6b6f6d20dffc46d809098951db87950a950eaf86
+DISTNAME=		${VERSION}
+PKGNAME=		pkgin-20130502
 CATEGORIES=		pkgtools
-MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=pkgin/}
+MASTER_SITES=		https://github.com/NetBSDfr/pkgin/archive/
+FETCH_USING=		curl
 
 MAINTAINER=		imil@home.imil.net
 HOMEPAGE=		http://pkgin.net/
@@ -17,7 +20,7 @@ CONF_FILES=		${EGDIR}/repositories.conf.example		\
 OWN_DIRS+=		${PKG_SYSCONFDIR}/${PKGBASE}
 INSTALLATION_DIRS+=	bin ${PKGMANDIR}/man1 ${EGDIR}
 
-WRKSRC=			${WRKDIR}/pkgin
+WRKSRC=			${WRKDIR}/pkgin-${VERSION}
 
 SUBST_CLASSES+=		path
 SUBST_STAGE.path=	pre-configure
@@ -27,11 +30,14 @@ SUBST_SED.path=		-e "s|/usr/pkg/etc|${PKG_SYSCONFDIR}|g"
 SUBST_SED.path+=	-e "s|/usr/sbin|${PKG_TOOLS_BIN}|g"
 SUBST_SED.path+=	-e "s|/var|${VARBASE}|g"
 SUBST_SED.path+=	-e "s|/usr/pkg|${PREFIX}|g"
+SUBST_SED.path+=	-e "s|!=.*uname -p|=	${MACHINE_ARCH}|g"
 
 GNU_CONFIGURE=		yes
 USE_FEATURES=		nbcompat
 USE_TOOLS+=		nroff
 CFLAGS+=		-g
+
+MAKE_ENV+=		MACHINE_ARCH=${MACHINE_ARCH}
 
 DEPENDS+=		pkg_install>=20110215:../../pkgtools/pkg_install
 
@@ -57,6 +63,7 @@ do-install:
 .	include "../../net/libfetch/buildlink3.mk"
 .endif
 
-.include "../../databases/sqlite3/buildlink3.mk"
 .include "../../archivers/libarchive/buildlink3.mk"
+.include "../../databases/sqlite3/buildlink3.mk"
+.include "../../security/openssl/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

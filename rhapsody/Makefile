@@ -7,9 +7,9 @@ CATEGORIES=		chat
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE:=rhapsody/}
 EXTRACT_SUFX=		.tgz
 
-MAINTAINER=		pancake@phreaker.net
+MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://rhapsody.sourceforge.net
-COMMENT=		IRC client for Unix operating systems.
+COMMENT=		IRC client for Unix operating systems
 
 WRKSRC=			${WRKDIR}/${PKGNAME}
 USE_PKGLOCALEDIR=	yes

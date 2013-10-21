@@ -1,7 +1,6 @@
 # $NetBSD$
 
-DISTNAME=	lxpanel-0.5.9
-PKGREVISION=	1
+DISTNAME=	lxpanel-0.5.10
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=lxde/}
 
@@ -30,7 +29,7 @@ PKGCONFIG_OVERRIDE+=	lxpanel.pc.in
 
 .include "../../devel/glib2/buildlink3.mk"
 .include "../../devel/libwnck/buildlink3.mk"
-.include "../../wip/menu-cache/buildlink3.mk"
+.include "../../sysutils/menu-cache/buildlink3.mk"
 .include "../../graphics/gdk-pixbuf2-xlib/buildlink3.mk"
 .include "../../x11/gtk2/buildlink3.mk"
 

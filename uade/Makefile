@@ -1,21 +1,32 @@
 # $NetBSD$
 #
 
-DISTNAME=		uade-1.00
-CATEGORIES=		audio
-MASTER_SITES=		http://uade.ton.tut.fi/uade/
-EXTRACT_SUFX=		.tar.bz2
+DISTNAME=	uade-2.13
+PKGREVISION=	2
+CATEGORIES=	audio
+MASTER_SITES=	http://zakalwe.fi/uade/uade2/
+EXTRACT_SUFX=	.tar.bz2
 
-MAINTAINER=		pancake@phreaker.net
-HOMEPAGE=		http://uade.ton.tut.fi/
-COMMENT=		Unix Amiga Delitracker Emulator
-
-PKG_DESTDIR_SUPPORT=	none
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	http://zakalwe.fi/uade/
+COMMENT=	Unix Amiga Delitracker Emulator
+LICENSE=	gnu-gpl-v2
 
 USE_PKGLOCALEDIR=	yes
 HAS_CONFIGURE=		yes
+USE_TOOLS+=		gmake pkg-config
 
-CONFIGURE_ARGS=		--with-oss --without-xmms --without-bmp --prefix=${PREFIX:Q}
+CONFIGURE_ARGS+=	--prefix=${PREFIX} --mandir=${PREFIX}/${PKGMANDIR}
+CONFIGURE_ARGS+=	--with-text-scope
 
-.include "../../mk/oss.buildlink3.mk"
+.include "options.mk"
+
+post-install:
+	for i in AMOS AudioSculpture Infogrames MED Medley PTK-Prowiz \
+		Soundtracker-IV; do \
+		${CHMOD} -x ${DESTDIR}${PREFIX}/share/uade2/players/$$i; \
+	done
+	${CHMOD} -x ${DESTDIR}${PREFIX}/share/uade2/players/ENV/EaglePlayer/*
+
+.include "../../audio/libao/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

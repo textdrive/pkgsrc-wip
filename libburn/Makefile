@@ -1,13 +1,14 @@
 # $NetBSD$
 #
 
-DISTNAME=	libburn-1.1.8
+DISTNAME=	libburn-1.3.0.pl01
+PKGNAME=	${DISTNAME:S/pl//}
 CATEGORIES=	sysutils
 MASTER_SITES=	http://files.libburnia-project.org/releases/
 
 MAINTAINER=	ryoon@NetBSD.org
 HOMEPAGE=	http://libburnia-project.org/wiki/Libburn
-COMMENT=	library by which preformatted data get onto optical media
+COMMENT=	Library by which preformatted data get onto optical media
 LICENSE=	gnu-gpl-v2
 
 WRKSRC=		${WRKDIR}/${DISTNAME:S/.pl01//}

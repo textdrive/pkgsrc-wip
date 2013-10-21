@@ -4,7 +4,7 @@
 DISTNAME=	qtnotifydaemon_1.0.14.orig
 PKGNAME=	${DISTNAME:S/_/-/:S/.orig//}
 CATEGORIES=	x11
-MASTER_SITES=	http://sourceforge.net/projects/qtnotifydaemon/files/
+MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=qtnotifydaemon/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://drull.org.ru/qtnotifydaemon/
@@ -29,4 +29,5 @@ do-install:
 .include "../../x11/libX11/buildlink3.mk"
 .include "../../x11/qt4-qdbus/buildlink3.mk"
 .include "../../x11/qt4-tools/buildlink3.mk"
+.include "../../x11/qt4-libs/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

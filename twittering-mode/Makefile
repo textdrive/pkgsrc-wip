@@ -2,7 +2,7 @@
 
 # M-x twittering-mode-version shows twittering-mode-vHEAD,
 # but just for convenience:
-DISTNAME=	twittering-mode-1.0
+DISTNAME=	twittering-mode-3.0.0
 CATEGORIES=	net
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
@@ -13,7 +13,7 @@ LICENSE=	gnu-gpl-v2
 GIT_REPOSITORIES=	master
 GIT_REPO.master=	https://github.com/hayamiz/twittering-mode.git
 GIT_MODULE.master=	twittering-mode
-PKGSRC_SETENV+=		GIT_SSL_NO_VERIFY=true
+PKGSRC_SETENV=		GIT_SSL_NO_VERIFY=true
 
 WRKSRC=		${WRKDIR}/twittering-mode
 NO_BUILD=	yes
@@ -24,7 +24,7 @@ USE_LANGUAGES=	# none
 # And directory name should get higher precedence, so begins with 'a'.
 INSTALLATION_DIRS=	${EMACS_LISPPREFIX}/a-files
 
-BUILD_DEPENDS+=	scmgit-base-[0-9]*:../../devel/scmgit-base
+TEST_TARGET=	check
 
 do-install:
 	${INSTALL_DATA}   ${WRKSRC}/twittering-mode.el  ${DESTDIR}${INSTALLATION_DIRS}

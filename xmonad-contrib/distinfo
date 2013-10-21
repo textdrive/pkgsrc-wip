@@ -1,5 +1,6 @@
 $NetBSD$
 
-SHA1 (xmonad-contrib-0.9.1.tar.gz) = b6e1886420b32347cb203f277a219b1772f2a95d
-RMD160 (xmonad-contrib-0.9.1.tar.gz) = a0e2dbea49ac33dfc231b19ad490e82f3f156db3
-Size (xmonad-contrib-0.9.1.tar.gz) = 291348 bytes
+SHA1 (xmonad-contrib-0.11.2.tar.gz) = b913c852dc7e189216a10b4fc0cc46fae79ddc1a
+RMD160 (xmonad-contrib-0.11.2.tar.gz) = fe14103dd108626572f952228f4ef8057ac54e70
+Size (xmonad-contrib-0.11.2.tar.gz) = 401758 bytes
+SHA1 (files/no_use_xft) = 011526f6ed3ad35e2d2c5563c369cb84160c3d57

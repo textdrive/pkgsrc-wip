@@ -1,7 +1,7 @@
 # $NetBSD$
 #
 
-DISTNAME=	sphinx-2.0.4-release
+DISTNAME=	sphinx-2.0.8-release
 PKGNAME=	${DISTNAME:S/-/search-/:S/-release//}
 CATEGORIES=	databases textproc
 MASTER_SITES=	http://www.sphinxsearch.com/files/
@@ -42,6 +42,7 @@ SUBST_CLASSES+=		paths
 SUBST_MESSAGE.paths=	Setting standard paths
 SUBST_STAGE.paths=	post-patch
 SUBST_FILES.paths=	sphinx.conf.in sphinx-min.conf.in Makefile.in src/searchd.cpp
+SUBST_FILES.paths+=	src/Makefile.in
 SUBST_SED.paths+=	-e 's,@CONFDIR@/log/searchd.pid,${SPHINX_RUN}/searchd.pid,g'
 SUBST_SED.paths+=	-e 's,@CONFDIR@/log/query.log,${SPHINX_LOG}/query.log,g'
 SUBST_SED.paths+=	-e 's,@CONFDIR@/log/searchd.log,${SPHINX_LOG}/searchd.log,g'
@@ -49,6 +50,9 @@ SUBST_SED.paths+=	-e 's,@CONFDIR@,${SPHINX_DIR},g'
 SUBST_SED.paths+=	-e 's,@localstatedir@,${SPHINX_DIR},g'
 SUBST_SED.paths+=	-e 's,@egdir@,${EGDIR},g'
 SUBST_SED.paths+=	-e 's,@PKG_SYSCONFDIR@,${PKG_SYSCONFDIR},g'
+
+FILES_SUBST+=		SPHINX_USER=${SPHINX_USER}
+FILES_SUBST+=		SPHINX_GROUP=${SPHINX_GROUP}
 
 CONFIGURE_DIRS=		.
 CONFIGURE_DIRS+=	api/libsphinxclient

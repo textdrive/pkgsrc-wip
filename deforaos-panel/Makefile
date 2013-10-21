@@ -1,9 +1,10 @@
 # $NetBSD$
+#
 
-DISTNAME=	Panel-0.2.15
-PKGNAME=	deforaos-panel-0.2.15
+DISTNAME=	Panel-0.2.17
+PKGNAME=	deforaos-panel-0.2.17
 CATEGORIES=	x11
-MASTER_SITES=	http://www.defora.org/os/download/download/3706/
+MASTER_SITES=	http://www.defora.org/os/download/download/4009/
 
 MAINTAINER=	khorben@defora.org
 HOMEPAGE=	http://www.defora.org/
@@ -32,6 +33,7 @@ post-install:
 
 .include "options.mk"
 
+.include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../wip/deforaos-libdesktop/buildlink3.mk"
 .include "../../wip/deforaos-browser/buildlink3.mk"
 .include "../../wip/deforaos-keyboard/buildlink3.mk"

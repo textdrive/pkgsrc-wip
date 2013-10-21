@@ -27,7 +27,7 @@ INFO_FILES=	YES
 
 SUBST_CLASSES+=			icon_directory
 SUBST_STAGE.icon_directory=	pre-configure
-SUBST_MESSAGES.icon_directory=	Fixing wl-icon-directory default value (defvar)
+SUBST_MESSAGE.icon_directory=	Fixing wl-icon-directory default value (defvar)
 SUBST_FILES.icon_directory=	${WRKSRC}/wl/wl-vars.el
 SUBST_SED.icon_directory=	-e 's|%%PREFIX%%|${PREFIX}|'
 
@@ -41,14 +41,18 @@ EMACS_BUILDLINK=	# empty
 
 GIT_REPOSITORIES=       master
 GIT_REPO.master=        git://github.com/wanderlust/wanderlust.git
-GIT_MODULE.master=      wanderlust 
+GIT_MODULE.master=      wanderlust
 _GIT_FLAGS?=            --depth 1
 
 
 post-install:
 	set -e; \
-	for f in BUGS NEWS README; do \
+	for f in BUGS NEWS ; do \
 		${INSTALL_DATA} ${WRKSRC:Q}/"$$f" ${DESTDIR:Q}${DOCDIR:Q}/en; \
+		${INSTALL_DATA} ${WRKSRC:Q}/"$$f".ja ${DESTDIR:Q}${DOCDIR:Q}/ja; \
+	done
+	for f in README ; do \
+		${INSTALL_DATA} ${WRKSRC:Q}/"$$f".md ${DESTDIR:Q}${DOCDIR:Q}/en; \
 		${INSTALL_DATA} ${WRKSRC:Q}/"$$f".ja ${DESTDIR:Q}${DOCDIR:Q}/ja; \
 	done
 	${INSTALL_DATA} ${WRKSRC:Q}/samples/en/dot.* ${DESTDIR:Q}${EXAMPLESDIR:Q}/en

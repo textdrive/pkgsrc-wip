@@ -1,7 +1,7 @@
 # $NetBSD$
 
 DISTNAME=		v8
-CATEGORIES=		wip
+CATEGORIES=		lang
 MASTER_SITES=		# none?
 
 MAINTAINER=		msporleder@gmail.com
@@ -13,7 +13,7 @@ SVN_REPOSITORIES=	v8
 SVN_ROOT.v8=		http://v8.googlecode.com/svn/trunk/
 SVN_MODULE.v8=		v8
 
-DEPENDS+=		libexecinfo>=1:../../wip/libexecinfo
+DEPENDS+=		libexecinfo>=1:../../devel/libexecinfo
 BUILD_DEPENDS+=		scons>=1:../../devel/scons
 
 NO_CONFIGURE=		yes
@@ -24,6 +24,6 @@ do-build:
 do-install:
 	cd ${WRKSRC}
 
-.include "../../lang/python26/buildlink3.mk"
+.include "../../lang/python/pyversion.mk"
 .include "../../wip/mk/svn-package.mk"
 .include "../../mk/bsd.pkg.mk"

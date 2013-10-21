@@ -1,7 +1,9 @@
 # $NetBSD$
 #
 
-DISTNAME=	pt-ttf-2.004.20120328
+PT_TTF_REV=	20121212
+DISTNAME=	pt-ttf-2.004.${PT_TTF_REV}	# as derived from TTF files
+DIST_SUBDIR=	pt-ttf-${PT_TTF_REV}
 CATEGORIES=	fonts
 MASTER_SITES=	http://www.fontstock.com/public/
 DISTFILES=	PTSansOFL.zip PTSerifOFL.zip PTMonoOFL.zip
@@ -9,7 +11,7 @@ DISTFILES=	PTSansOFL.zip PTSerifOFL.zip PTMonoOFL.zip
 MAINTAINER=	mishka@NetBSD.org
 HOMEPAGE=	http://www.paratype.com/public/
 COMMENT=	Public fonts for minority languages of Russia
-LICENSE=	open-font-license
+LICENSE=	ofl-v1.1
 
 USE_LANGUAGES=	# none
 NO_BUILD=	yes

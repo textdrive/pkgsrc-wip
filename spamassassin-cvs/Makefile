@@ -9,7 +9,6 @@ MASTER_SITES=	http://www.spamassassin.org/devel/		\
 		http://eu.spamassassin.org/devel/		\
 		http://au.spamassassin.org/devel/
 
-#MAINTAINER=	heinz@NetBSD.org # maintainer of pkgsrc in base
 MAINTAINER=	tom@replic8.net
 HOMEPAGE=	http://spamassassin.apache.org/
 COMMENT=	Mail filter to identify spam (CVS snapshot)
@@ -79,7 +78,7 @@ SA_SSLCERTS=		'$$LOCAL_RULES_DIR/certs'
 .if !empty(SPAMASSASSIN_USE_MYSQL:M[yY][eE][sS])
 .include "../../databases/p5-DBI/buildlink3.mk"
 DEPENDS+=		p5-DBI>=1.37:../../databases/p5-DBI
-DEPENDS+=		p5-DBD-mysql>=2.1017:../../databases/p5-DBD-mysql
+DEPENDS+=		p5-DBD-{mysql,percona}*-[0-9]*:../../databases/p5-DBD-mysql
 .endif
 
 .if !empty(SPAMASSASSIN_USE_RAZOR:M[yY][eE][sS])

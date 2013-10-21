@@ -2,11 +2,11 @@
 #
 
 DISTNAME=		twinkle-1.4.2
-PKGREVISION=		5
+PKGREVISION=		6
 CATEGORIES=		audio chat net
 MASTER_SITES=		http://www.xs4all.nl/~mfnboer/twinkle/download/
 
-MAINTAINER=		pancake@phreaker.net
+MAINTAINER=		pkgsrc-users@NetBSD.org
 HOMEPAGE=		http://www.twinklephone.com/
 COMMENT=		Software Phone using the SIP protocol
 LICENSE=		gnu-gpl-v2
@@ -30,7 +30,8 @@ SUBST_SED.boost+=	-e 's,boost_regex-gcc,boost_regex-mt,'
 
 LDFLAGS+=		${BUILDLINK_LDADD.oss}
 
-.include "../../security/libgcrypt/buildlink3.mk"
+
+#.include "../../security/libgcrypt/buildlink3.mk"
 .include "../../mk/oss.buildlink3.mk"
 .include "../../audio/libsndfile/buildlink3.mk"
 .include "../../devel/readline/buildlink3.mk"
@@ -39,5 +40,5 @@ LDFLAGS+=		${BUILDLINK_LDADD.oss}
 .include "../../x11/qt3-libs/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 .include "../../wip/commoncpp2/buildlink3.mk"
-.include "../../wip/ccrtp/buildlink3.mk"
+.include "../../net/ccrtp/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

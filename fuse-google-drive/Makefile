@@ -4,7 +4,6 @@
 DISTNAME=	fuse-google-drive-0
 CATEGORIES=	filesystems
 MASTER_SITES=	/usr/pkgsrc/distfiles/
-EXTRACT_SUFX=	.tar.gz
 
 MAINTAINER=	bjs@NetBSD.org
 HOMEPAGE=	https://github.com/jcline/fuse-google-drive
@@ -17,7 +16,7 @@ GIT_TAG.fuse-google-drive=	1e1bfa00b6d55cabcb717d0109ffc374c0af0348
 .include "../../wip/mk/git-package.mk"
 
 GNU_CONFIGURE=	yes
-USE_TOOLS+=	gmake aclocal automake pkg-config
+USE_TOOLS+=	aclocal automake autoreconf gmake pkg-config
 USE_LIBTOOL=	yes
 
 WRKSRC=		${WRKDIR}/${PKGBASE}
@@ -28,7 +27,7 @@ pre-configure:
 
 .include "../../mk/fuse.buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
-.include "../../wip/json-c/buildlink3.mk"
+.include "../../textproc/json-c/buildlink3.mk"
 .include "../../www/curl/buildlink3.mk"
 
 .include "../../mk/bsd.pkg.mk"

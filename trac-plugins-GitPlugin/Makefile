@@ -2,6 +2,7 @@
 
 DISTNAME=	gitplugin_0.12-r${SVN_REV}
 PKGNAME=	trac-plugins-GitPlugin-0.1pre${SVN_REV}
+PKGREVISION=	1
 EGG_NAME=	TracGit-0.12.0.2dev
 CATEGORIES=	www
 MASTER_SITES=	-http://trac-hacks.org/changeset/${SVN_REV}/${SVN_MOD}?old_path=/&format=zip
@@ -13,7 +14,7 @@ COMMENT=	GIT plugin for Trac
 LICENSE=	gnu-gpl-v2
 
 DEPENDS+=	{ja-,}trac>=0.12:../../www/trac
-DEPENDS+=	scmgit-base>=1.5.6:../../devel/scmgit-base
+DEPENDS+=	git-base>=1.5.6:../../devel/git-base
 
 SVN_REV=	7757
 SVN_MOD=	gitplugin/0.12

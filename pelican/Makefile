@@ -1,0 +1,33 @@
+# $NetBSD: Makefile,v 1.27 2013/03/13 20:36:26 gls Exp $
+#
+
+DISTNAME=		${VERSION}
+PKGNAME=		pelican-${DISTNAME}
+CATEGORIES=		www textproc
+MASTER_SITES=	https://github.com/getpelican/pelican/archive/
+
+MAINTAINER=		ahp-nils@users.sourceforge.net
+HOMEPAGE=		http://blog.getpelican.com/
+COMMENT=		Static site generator that supports Markdown and reST syntax
+LICENSE=		gnu-agpl-v3
+
+VERSION=		3.2.2
+WRKSRC=			${WRKDIR}/${PKGNAME_NOREV}
+EXTRACT_SUFX=	.zip
+FETCH_USING=	curl
+
+PYTHON_VERSIONS_INCOMPATIBLE=26 31 32
+
+DEPENDS+=		${PYPKGPREFIX}-docutils-[0-9]*:../../textproc/py-docutils
+DEPENDS+=		${PYPKGPREFIX}-markdown-[0-9]*:../../textproc/py-markdown
+DEPENDS+=		${PYPKGPREFIX}-jinja2>=2.6:../../textproc/py-jinja2
+DEPENDS+=		${PYPKGPREFIX}-pygments>=1.4:../../textproc/py-pygments
+DEPENDS+=		${PYPKGPREFIX}-feedgenerator>=1.5:../../wip/py-feedgenerator
+DEPENDS+=		${PYPKGPREFIX}-pytz-[0-9]*:../../time/py-pytz
+DEPENDS+=		${PYPKGPREFIX}-blinker-[0-9]*:../../devel/py-blinker
+DEPENDS+=		${PYPKGPREFIX}-Unidecode-[0-9]*:../../textproc/py-Unidecode
+DEPENDS+=		${PYPKGPREFIX}-six-[0-9]*:../../wip/py-six
+
+.include "../../lang/python/application.mk"
+.include "../../lang/python/egg.mk"
+.include "../../mk/bsd.pkg.mk"

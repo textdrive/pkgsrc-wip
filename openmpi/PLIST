@@ -1,5 +1,4 @@
 @comment $NetBSD$
-bin/mpiCC
 bin/mpic++
 bin/mpicc
 bin/mpicxx
@@ -7,8 +6,6 @@ bin/mpiexec
 bin/mpif77
 bin/mpif90
 bin/mpifort
-bin/mpijavac
-bin/mpijavac.pl
 bin/mpirun
 bin/ompi-clean
 bin/ompi-ps
@@ -20,7 +17,6 @@ bin/orte-clean
 bin/orte-info
 bin/orte-ps
 bin/orte-top
-bin/orteCC
 bin/orte_wrapper_script
 bin/ortec++
 bin/ortecc
@@ -86,8 +82,6 @@ include/openmpi/ompi/mpi/cxx/topology.h
 include/openmpi/ompi/mpi/cxx/topology_inln.h
 include/openmpi/ompi/mpi/cxx/win.h
 include/openmpi/ompi/mpi/cxx/win_inln.h
-lib/libmca_common_commpatterns.la
-lib/libmca_common_netpatterns.la
 lib/libmca_common_sm.la
 lib/libmpi.la
 lib/libmpi_cxx.la
@@ -147,7 +141,6 @@ lib/openmpi/mca_plm_rsh.la
 lib/openmpi/mca_pml_bfo.la
 lib/openmpi/mca_pml_cm.la
 lib/openmpi/mca_pml_ob1.la
-lib/openmpi/mca_pstat_test.la
 lib/openmpi/mca_pubsub_orte.la
 lib/openmpi/mca_ras_simulator.la
 lib/openmpi/mca_rcache_vma.la
@@ -180,7 +173,6 @@ lib/pkgconfig/ompi-f90.pc
 lib/pkgconfig/ompi-fort.pc
 lib/pkgconfig/ompi.pc
 lib/pkgconfig/orte.pc
-man/man1/mpiCC.1
 man/man1/mpic++.1
 man/man1/mpicc.1
 man/man1/mpicxx.1
@@ -188,7 +180,6 @@ man/man1/mpiexec.1
 man/man1/mpif77.1
 man/man1/mpif90.1
 man/man1/mpifort.1
-man/man1/mpijavac.1
 man/man1/mpirun.1
 man/man1/ompi-clean.1
 man/man1/ompi-ps.1
@@ -200,7 +191,6 @@ man/man1/orte-clean.1
 man/man1/orte-info.1
 man/man1/orte-ps.1
 man/man1/orte-top.1
-man/man1/orteCC.1
 man/man1/orted.1
 man/man1/orterun.1
 man/man3/MPI.3
@@ -546,7 +536,6 @@ share/openmpi/help-mpi-pml-bfo.txt
 share/openmpi/help-mpi-pml-ob1.txt
 share/openmpi/help-mpi-runtime.txt
 share/openmpi/help-mpool-base.txt
-share/openmpi/help-mr+.txt
 share/openmpi/help-ompi-crcp-base.txt
 share/openmpi/help-ompi-dpm-base.txt
 share/openmpi/help-ompi-dpm-orte.txt
@@ -589,7 +578,6 @@ share/openmpi/help-ras-base.txt
 share/openmpi/help-regex.txt
 share/openmpi/help-rmaps_rank_file.txt
 share/openmpi/mca-coll-ml.config
-share/openmpi/mpiCC-wrapper-data.txt
 share/openmpi/mpic++-wrapper-data.txt
 share/openmpi/mpicc-wrapper-data.txt
 share/openmpi/mpicxx-wrapper-data.txt
@@ -597,6 +585,7 @@ share/openmpi/mpif77-wrapper-data.txt
 share/openmpi/mpif90-wrapper-data.txt
 share/openmpi/mpifort-wrapper-data.txt
 share/openmpi/openmpi-valgrind.supp
-share/openmpi/orteCC-wrapper-data.txt
 share/openmpi/ortec++-wrapper-data.txt
 share/openmpi/ortecc-wrapper-data.txt
+etc/cshrc
+etc/shrc

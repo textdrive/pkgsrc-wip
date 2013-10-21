@@ -1,22 +1,29 @@
 # $NetBSD$
 
-DISTNAME=	armadillo-2.2.1
-PKGREVISION=	1
+DISTNAME=	armadillo-3.${DIST_MINOR}.1
+PKGNAME=	armadillo-3.${PKG_MINOR}.1
 CATEGORIES=	math
 MASTER_SITES=   ${MASTER_SITE_SOURCEFORGE:=arma/}
 
 MAINTAINER=	jwbacon@tds.net
 HOMEPAGE=	http://sourceforge.net/projects/arma/
-COMMENT=	C++ template matrix library
-LICENSE=	gnu-lgpl-v3
+COMMENT=	C++ linear algebra library
+LICENSE=	mpl-2.0
 
 USE_LANGUAGES+= c c++
 USE_CMAKE=	yes
 
+# OS X cannot handle components > 255 in a library version, so strip
+# the last digit from Aramdillo's 3-digit minor version.
+PKG_MINOR=	80
+DIST_MINOR=	${PKG_MINOR}0
+
 CMAKE_ARGS+=	-DINSTALL_LIB_DIR=${PREFIX}/lib
 
-pre-configure:
-	cp -f ${FILESDIR}/CMakeLists.txt.native-find ${WRKSRC}
+SUBST_CLASSES=		minor
+SUBST_STAGE.minor=	post-patch
+SUBST_FILES.minor=	CMakeLists.txt
+SUBST_SED.minor=	-e "s|ARMA_MINOR ${DIST_MINOR}|ARMA_MINOR ${PKG_MINOR}|g"
 
 .include "../../math/blas/buildlink3.mk"
 .include "../../math/lapack/buildlink3.mk"

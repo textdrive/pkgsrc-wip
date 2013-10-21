@@ -1,10 +1,12 @@
 # $NetBSD$
 #
 
-PKGNAME=	paraview-3.12.0
-DISTNAME=	ParaView-3.12.0
+VER=4.0.1
+PKGNAME=	paraview-${VER}
+DISTNAME=	ParaView-v${VER}-source
+EXTRACT_SUFX=	.tgz
 CATEGORIES=	graphics
-MASTER_SITES=	http://www.paraview.org/files/v3.12/
+MASTER_SITES=	http://paraview.org/files/v4.0/
 
 MAINTAINER=	pouya@san-serriffe.org
 HOMEPAGE=	http://www.paraview.org/
@@ -22,7 +24,12 @@ CMAKE_ARGS+=			-DCMAKE_BUILD_TYPE=Release
 CMAKE_ARGS+=			-DBUILD_SHARED_LIBS=ON
 CMAKE_ARGS+=			-DPARAVIEW_USE_MPI=OFF
 CMAKE_ARGS+=			-DVTK_USE_SYSTEM_HDF5=ON
+
+# python related options
 CMAKE_ARGS+=			-DPARAVIEW_ENABLE_PYTHON=ON
+CMAKE_ARGS+=			-DPYTHON_LIBRARY=${PREFIX}/lib/libpython${PYVERSSUFFIX}.so
+CMAKE_ARGS+=			-DPYTHON_INCLUDE_DIR=${PREFIX}/${PYINC}
+
 CMAKE_ARGS+=			-DPARAVIEW_BUILD_QT_GUI=ON
 CMAKE_ARGS+=			-DPARAVIEW_INSTALL_DEVELOPMENT=ON
 CMAKE_ARGS+=			-DPARAVIEW_GENERATE_PROXY_DOCUMENTATION=ON
@@ -37,7 +44,6 @@ CMAKE_ARGS+=			-DVTK_USE_SYSTEM_PNG=ON \
 						-DVTK_USE_SYSTEM_LIBXML2=ON \
 						-DVTK_USE_X=ON
 
-
 CMAKE_ARG_PATH= 		..
 CONFIGURE_DIRS= 		_ParaView_build
 
@@ -47,11 +53,21 @@ PY_PATCHPLIST=			yes
 
 # to make protoc work during installation
 # http://paraview.org/Bug/view.php?id=12852
-MAKE_ENV+=			LD_LIBRARY_PATH=${WRKSRC}/_ParaView_build/bin/
+# 
+# For 3.98 it fails to run vtkkwProcessXML-pv3.98
+# with the following error message
+# _ParaView_build/bin/vtkkwProcessXML-pv3.98: error while loading
+# shared libraries: libvtkCommonCore-pv3.98.so.1: cannot open shared
+# object file: No such file or directory
+# 
+# I add ${WRKSRC}/_ParaView_build/lib/ to LD_LIBRARY_PATH to solve it
+MAKE_ENV+=			LD_LIBRARY_PATH=${WRKSRC}/_ParaView_build/bin:${WRKSRC}/_ParaView_build/lib/
 
 pre-configure:
 	${MKDIR} ${WRKSRC}/_ParaView_build
 
+do-test:
+	${RUN} cd ${WRKSRC}/_ParaView_build ; ${SETENV} ${MAKE_ENV} ${MAKE} test
 
 #.include "../../mk/mpi.buildlink3.mk"
 .include "../../x11/libXt/buildlink3.mk"
@@ -72,6 +88,5 @@ pre-configure:
 .include "../../textproc/expat/buildlink3.mk"
 .include "../../textproc/libxml2/buildlink3.mk"
 #.include "../../databases/sqlite3/buildlink3.mk"
-
 
 .include "../../mk/bsd.pkg.mk"

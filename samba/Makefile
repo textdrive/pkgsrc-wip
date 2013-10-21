@@ -4,17 +4,15 @@
 
 DISTNAME=	samba-${VERSION}
 CATEGORIES=	net
-MASTER_SITES=	${SAMBA_MIRRORS:=samba4/}
+MASTER_SITES=	${SAMBA_MIRRORS:=stable/}
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://www.samba.org/
 COMMENT=	SMB/CIFS protocol server suite
 LICENSE=	gnu-gpl-v3
 
-VERSION=	4.0.0beta4
+VERSION=	4.0.7
 CONFLICTS+=	ja-samba-[0-9]* pam-smbpass-[0-9]* tdb-[0-9]* winbind-[0-9]*
-
-# DEPENDS=	xsltproc
 
 FILESDIR=		${PKGDIR}/../../net/samba/files
 DESCR_SRC=		${PKGDIR}/../../net/samba/DESCR
@@ -47,21 +45,24 @@ FILES_SUBST+=		WINBINDD_RCD_SCRIPT=${WINBINDD_RCD_SCRIPT:Q}
 # mktemp is useful for the replacement adduser script, but don't require
 # a full dependency since it's not actually needed by samba.
 USE_TOOLS+=		gmake mktemp perl:run
+
 REPLACE_PERL=		script/findsmb.in
 
-BROKEN_GETTEXT_DETECTION=yes
+USE_GNU_ICONV=		yes	# FIXME: something doesn't work on NetBSD
 USE_GNU_READLINE=	yes
 
 HAS_CONFIGURE=		yes
-GNU_CONFIGURE_LIBDIR=	${SAMBA_LIBDIR}
-CONFIG_SHELL=		$(PYTHONBIN)
-CONFIGURE_SCRIPT=	$(WRKSRC)/buildtools/bin/waf
+CONFIGURE_ARGS+=	--libdir=${SAMBA_LIBDIR}
+CONFIG_SHELL=		${PYTHONBIN}
+CONFIGURE_SCRIPT=	${WRKSRC}/buildtools/bin/waf
 CONFIGURE_ARGS+=	configure
 CONFIGURE_ARGS+=	--prefix=$(PREFIX:Q)
 #CONFIGURE_ARGS+=	--with-libiconv=${BUILDLINK_PREFIX.iconv}
 #CONFIGURE_ARGS+=	--with-readline=${BUILDLINK_PREFIX.readline}
 #CONFIGURE_ARGS+=	--with-configdir=${SAMBA_ETCDIR}
-CONFIGURE_ARGS+=	--libdir=${SAMBA_LIBDIR}
+CONFIGURE_ARGS+=	--with-privatelibdir=${SAMBA_LIBDIR}/samba
+CONFIGURE_ARGS+=	--mandir=${PREFIX}/${PKGMANDIR}
+CONFIGURE_ARGS+=	--datadir=${PREFIX}/share/${PKGBASE}
 CONFIGURE_ARGS+=	--with-lockdir=${SAMBA_LOCKDIR}
 #CONFIGURE_ARGS+=	--with-logfilebase=${SAMBA_LOGDIR}
 CONFIGURE_ARGS+=	--with-modulesdir=${SAMBA_MODULESDIR}
@@ -69,15 +70,14 @@ CONFIGURE_ARGS+=	--with-piddir=${SAMBA_PIDDIR}
 CONFIGURE_ARGS+=	--with-privatedir=${SAMBA_PRIVATE:Q}
 #CONFIGURE_ARGS+=	--with-statedir=${SAMBA_STATEDIR}
 CONFIGURE_ARGS+=	--localstatedir=${SAMBA_VARDIR}
-#CONFIGURE_ARGS+=	--with-mandir=${PREFIX}/${PKGMANDIR}
 #CONFIGURE_ARGS+=	--with-swatdir=${PREFIX}/share/samba/swat
 #
 # Explicitly disable samba4 merged-build option which is broken.
 #
 #CONFIGURE_ARGS+=	--enable-merged-build=no
 
-#CONFIGURE_ARGS+=	--enable-rpath
-CONFIGURE_ARGS+=	--bundled-libraries=com_err
+CONFIGURE_ARGS+=	--bundled-libraries=tdb,com_err
+CONFIGURE_ENV+=		XSLTPROC=${FALSE} # suppress generation of man pages
 
 CHECK_PORTABILITY_SKIP=	source3/configure
 
@@ -165,8 +165,16 @@ post-install:
 	# ${CHMOD} ${SHAREMODE} ${DESTDIR}${PREFIX}/include/*.h
 
 REPLACE_PERL=	pidl/pidl
-REPLACE_PYTHON=	source4/setup/* source4/scripting/bin/*
-# tevent.py sample-script.py sample-two-script.py
+REPLACE_PYTHON=	buildtools/bin/waf \
+		source4/setup/* \
+		source4/scripting/bin/* \
+		lib/subunit/python/subunit/run.py \
+		lib/subunit/python/subunit/tests/sample-script.py \
+		lib/subunit/python/subunit/tests/sample-two-script.py \
+		lib/tevent/tevent.py
+
+# DEBUG:
+#CONFIGURE_ARGS+=	--verbose --verbose
 
 .include "../../lang/python/application.mk"
 

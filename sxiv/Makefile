@@ -1,9 +1,11 @@
 # $NetBSD$
 #
 
-DISTNAME=	sxiv-1.0
+DISTNAME=	v1.1.1
+PKGNAME=	sxiv-${DISTNAME:S/v//}
+PKGREVISION=	1
 CATEGORIES=	graphics
-MASTER_SITES=	http://cloud.github.com/downloads/muennich/sxiv/
+MASTER_SITES=	https://github.com/muennich/sxiv/archive/
 
 MAINTAINER=	leot1990@users.sourceforge.net
 HOMEPAGE=	http://github.com/muennich/sxiv
@@ -11,6 +13,10 @@ COMMENT=	Simple (or small or suckless) X Image Viewer
 LICENSE=	gnu-gpl-v2
 
 NO_CONFIGURE=	yes
+
+FETCH_USING=	curl	# XXX: https://
+
+WRKSRC=${WRKDIR}/${PKGNAME_NOREV}
 
 SUBST_CLASSES+=		makefile
 SUBST_STAGE.makefile=	pre-build
@@ -28,4 +34,5 @@ INSTALLATION_DIRS=	bin ${PKGMANDIR}/man1
 
 .include "../../x11/libX11/buildlink3.mk"
 .include "../../graphics/imlib2/buildlink3.mk"
+.include "../../mk/giflib.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

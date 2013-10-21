@@ -22,7 +22,9 @@ GNU_CONFIGURE=		YES
 USE_TOOLS+=		pkg-config gmake
 
 SVN_REPOSITORIES=	client
-SVN_ROOT.client=	http://electricsheep.svn.sourceforge.net/svnroot/electricsheep/trunk/client
+SVN_ROOT.client=	http://svn.code.sf.net/p/electricsheep/code/trunk/client
+			# OLD! Should now be 
+			# Our SVN is now hosted by Google: http://code.google.com/p/electricsheep/source/checkout
 WRKSRC=			${WRKDIR}/client
 
 SHARE_DIR=		${DESTDIR}/${PREFIX}/share/electricsheep
@@ -39,9 +41,10 @@ do-install:
 	${INSTALL} -d -m 0755 ${DESTDIR}/${PREFIX}/libexec/xscreensaver/config
 	${INSTALL_DATA} ${WRKSRC}/electricsheep.xml ${DESTDIR}/${PREFIX}/libexec/xscreensaver/config
 
-.include "../../mk/jpeg.buildlink3.mk"
 # for libavformat:
-.include "../../multimedia/ffmpeg/buildlink3.mk"
+.include "../../multimedia/ffmpeg010/buildlink3.mk"
+# Order for correct runtime loading:
+.include "../../mk/jpeg.buildlink3.mk"
 .include "../../devel/libglade/buildlink3.mk"
 #.include "../../devel/libgnomeui/buildlink3.mk"
 .include "../../wip/flam3-svn/buildlink3.mk"

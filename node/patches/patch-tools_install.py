@@ -1,14 +1,15 @@
 $NetBSD$
 
 Install man pages under the right directory.
---- tools/install.py.orig	2012-12-12 22:44:54.000000000 +0000
-+++ tools/install.py	2012-12-27 09:07:35.002233431 +0000
-@@ -200,6 +200,8 @@
- 
-   if 'freebsd' in sys.platform:
+
+--- tools/install.py.orig	2013-03-21 01:15:04.000000000 +0000
++++ tools/install.py
+@@ -129,7 +129,7 @@ def files(action):
+   if 'freebsd' in sys.platform or 'openbsd' in sys.platform:
      action(['doc/node.1'], 'man/man1/')
-+  elif 'sunos' in sys.platform:
-+    action(['doc/node.1'], 'man/man1/')
    else:
-     action(['doc/node.1'], 'share/man/man1/')
+-    action(['doc/node.1'], 'share/man/man1/')
++    action(['doc/node.1'], '@PKGMANDIR@/man1/')
+ 
+   if 'true' == variables.get('node_install_npm'): npm_files(action)
  

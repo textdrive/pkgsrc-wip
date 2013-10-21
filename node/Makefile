@@ -1,7 +1,7 @@
 # $NetBSD$
 #
 
-DISTNAME=	node-v0.8.16
+DISTNAME=	node-v0.10.7
 CATEGORIES=	devel
 MASTER_SITES=	http://nodejs.org/dist/${DISTNAME:S/node-//}/
 PKGNAME=	${DISTNAME:S/-v/js-/}
@@ -51,10 +51,10 @@ REPLACE_PYTHON+=	tools/wafadmin/*.py
 REPLACE_PYTHON+=	tools/wafadmin/Tools/*.py
 
 .if ${OPSYS} == "NetBSD" || ${OPSYS} == "FreeBSD" || ${OPSYS} == "OpenBSD"
-. include "../../wip/libexecinfo/buildlink3.mk"
+. include "../../devel/libexecinfo/buildlink3.mk"
 .endif
 .if ${OPSYS} == "NetBSD"
-BUILD_DEPENDS+=	lockf-[0-9]*:../../wip/lockf
+BUILD_DEPENDS+=	lockf-[0-9]*:../../sysutils/lockf
 .endif
 .include "../../lang/python/application.mk"
 .include "../../mk/bsd.pkg.mk"

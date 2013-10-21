@@ -1,38 +1,35 @@
 # $NetBSD$
 #
 
-DISTNAME=	rabbitmq-c
-PKGNAME=	${DISTNAME}-0.2${GIT_TAG}
+DISTNAME=	rabbitmq-c-0.4.1
 CATEGORIES=	net
+MASTER_SITES=	https://github.com/alanxz/rabbitmq-c/releases/download/v${PKGVERSION_NOREV}/
+FETCH_USING=	curl
 
 MAINTAINER=	filip@joyent.com
 HOMEPAGE=	https://github.com/alanxz/rabbitmq-c
 COMMENT=	C-language AMQP client library for use with AMQP servers
 LICENSE=	mit
 
-GIT_REPOSITORIES=	rabbitmq-c
-GIT_REPO.rabbitmq-c=	git://github.com/alanxz/rabbitmq-c.git
+USE_GCC_RUNTIME=	yes
 
-USE_LIBTOOL=		yes
-USE_TOOLS+=		autoconf automake autoreconf gmake perl pkg-config
-HAS_CONFIGURE=		yes
-
-BUILD_DEPENDS+=		${PYPKGPREFIX}-simplejson-[0-9]*:../../converters/py-simplejson
 BUILD_DEPENDS+=		xmlto-[0-9]*:../../textproc/xmlto
 
-CONFIGURE_ENV+=		LIBS=${LIBS:Q}
-CONFIGURE_ARGS+=	--prefix=${PREFIX}
-CONFIGURE_ARGS+=	--mandir=${PREFIX}/${PKGMANDIR}
+USE_CMAKE=		yes
+USE_LANGUAGES+=		c99
+USE_TOOLS+=		pkg-config
 
-LIBS.SunOS+=		-lsocket
+SUBST_CLASSES+=		man
+SUBST_STAGE.man=	pre-build
+SUBST_MESSAGE.man=	Fix man installation path
+SUBST_FILES.man=	tools/CMakeLists.txt
+SUBST_SED.man=		-e 's,share/man,${PKGMANDIR},'
 
-pre-configure:
-	cd ${WRKSRC} && autoreconf -i
+CMAKE_ARGS+=		-DBUILD_TOOLS=ON
+CMAKE_ARGS+=		-DBUILD_TOOLS_DOCS=ON
+CMAKE_ARGS+=		-DENABLE_SSL_SUPPORT=ON
 
-.include "../../wip/mk/git-package.mk"
-# Init and update submodules too
-_GIT_FLAGS+=		--recursive
-
-.include "../../lang/python/application.mk"
 .include "../../devel/popt/buildlink3.mk"
+.include "../../security/openssl/buildlink3.mk"
+.include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
